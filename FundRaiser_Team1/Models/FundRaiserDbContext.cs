@@ -4,6 +4,7 @@ namespace FundRaiser_Team1.Models
 {
     public class FundRaiserDbContext: DbContext
     {
+        public DbSet<Project> Projects { get; set; }
         public DbSet<Creator> Creator { get; set; }
         public DbSet<Backer> Backer { get; set; }
 
