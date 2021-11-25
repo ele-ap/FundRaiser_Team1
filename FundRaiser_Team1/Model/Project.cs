@@ -14,5 +14,9 @@ namespace FundRaiser_Team1.Model
         public string StatusPost { get; set; }
         public List<string> Photos { get; set; }
         public List<string> Videos { get; set; }
+
+        public List<Package> AwardPackages { get; set; }
+        public List<Backer> Backers { get; set; }
+        public Creator ProjectCreator { get; set; }
     }
 }
