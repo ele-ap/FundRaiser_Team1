@@ -40,29 +40,43 @@ namespace FundRaiser_Team1.Services
 
         public List<Backer> GetBackers(int projectId)
         {
-            var projectDb = _dbContext.Projects.Find(projectId).Include(b => b.Backers);
-
+            var projectDb = _dbContext.Projects.Find(projectId);
             return projectDb.Backers;
         }
 
         public Creator GetCreator(int projectId)
         {
-            throw new NotImplementedException();
+            var projectDb = _dbContext.Projects.Find(projectId);
+            return projectDb.ProjectCreator;
         }
 
         public List<Package> GetPackages(int projectId)
         {
-            throw new NotImplementedException();
+            var projectDb = _dbContext.Projects.Find(projectId);
+            return projectDb.AwardPackages;
         }
 
         public Project GetProject(int projectId)
         {
-            throw new NotImplementedException();
+            var projectDb = _dbContext.Projects.Find(projectId);
+            return projectDb;
         }
 
         public Project UpdateProject(int projectId, Project project)
         {
-            throw new NotImplementedException();
+            var projectDb = _dbContext.Projects.Find(projectId);
+            if (projectDb == null) throw new KeyNotFoundException();
+            projectDb.Title = project.Title;
+            projectDb.Description = project.Description;
+            projectDb.StatusPost = project.StatusPost;
+            projectDb.Photos = project.Photos;
+            projectDb.Videos = project.Videos;
+            projectDb.AwardPackages = project.AwardPackages;
+            projectDb.Backers = project.Backers;
+            projectDb.ProjectCreator = project.ProjectCreator;
+
+            _dbContext.SaveChanges();
+            return projectDb;
         }
     }
 }
