@@ -9,6 +9,7 @@ namespace FundRaiser_Team1.Models
 {
     public abstract class User
     {
+        [Key]
         public int Id { get; set; }
         [MaxLength(50)]
         public string FirstName { get; set; }
