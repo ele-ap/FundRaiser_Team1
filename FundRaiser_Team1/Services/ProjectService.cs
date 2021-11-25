@@ -22,9 +22,9 @@ namespace FundRaiser_Team1.Services
             if (creator is null) return null;
             var project = new Project()
             {
-                ProjectCreator = creator
+                ProjectCreator = creator            
             };
-            _dbContext.Creator.Add(creator);
+            _dbContext.Projects.Add(project);
             _dbContext.SaveChanges();
             return project;
         }
