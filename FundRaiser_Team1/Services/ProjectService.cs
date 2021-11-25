@@ -1,5 +1,5 @@
-﻿using FundRaiser_Team1.Model;
-using FundRaiser_Team1.Models;
+﻿using FundRaiser_Team1.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,12 +31,18 @@ namespace FundRaiser_Team1.Services
 
         public bool DeleteProject(int projectId)
         {
-            throw new NotImplementedException();
+            var projectDb = _dbContext.Projects.Find(projectId);
+            if (projectDb is null) return false;
+            _dbContext.Projects.Remove(projectDb);
+
+            return _dbContext.SaveChanges() == 1;
         }
 
         public List<Backer> GetBackers(int projectId)
         {
-            throw new NotImplementedException();
+            var projectDb = _dbContext.Projects.Find(projectId).Include(b => b.Backers);
+
+            return projectDb.Backers;
         }
 
         public Creator GetCreator(int projectId)
