@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FundRaiser_Team1.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundRaiser_Team1.Models
 {

@@ -1,4 +1,5 @@
 ﻿using FundRaiser_Team1.Model;
+using FundRaiser_Team1.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,13 +18,13 @@ namespace FundRaiser_Team1.Services
         }
         public Project CreateProject(int creatorId)
         {
-            var creator = _dbContext.Creators.Find(creatorId);
+            var creator = _dbContext.Creator.Find(creatorId);
             if (creator is null) return null;
             var project = new Project()
             {
                 ProjectCreator = creator
             };
-            _dbContext.Creators.Add(creator);
+            _dbContext.Creator.Add(creator);
             _dbContext.SaveChanges();
             return project;
         }
