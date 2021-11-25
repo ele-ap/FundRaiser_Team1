@@ -9,8 +9,6 @@ namespace FundRaiser_Team1.Models
     public class Creator : User
     {
         public List<Project> CreatedProjects { get; set; } = new();
-        public Creator(string FirstName, string LastName, string Email) : base(FirstName, LastName , Email)
-        {   
-        }
+       
     }
 }

@@ -13,16 +13,10 @@ namespace FundRaiser_Team1.Models
         public int Id { get; set; }
         [MaxLength(50)]
         public string FirstName { get; set; }
-        [Required]
-        [MaxLength(50)]
+        [Required, MaxLength(50)]
         public string LastName { get; set; }
         [Required, MaxLength(50)]
         public string Email { get; set; }
-        public User(string FirstName,string LastName,string Email)
-        {
-            this.FirstName = FirstName;
-            this.LastName = LastName;
-            this.Email = Email;
-        }
+        
     }
 }
