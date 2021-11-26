@@ -3,7 +3,7 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<form>
+<form asp-action="CreateUser">
      <div class="form-group">
         <label for="inputUser">User</label>
         <select class="form-control" id="exampleFormControlSelect1">
@@ -29,3 +29,4 @@
     </div>
     <button type="submit" class="btn btn-primary" style="width:100%">Sign up</button>
 </form>
+<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="SignIn">Sign In</a>

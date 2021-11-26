@@ -23,14 +23,11 @@ namespace FunderRaiser_Team1_Mvc.Controllers
             return View();
         }
 
-        public IActionResult Creator()
+        public IActionResult SignIn()
         {
             return View();
         }
-        public IActionResult Backer()
-        {
-             return View();
-        }
+      
         public IActionResult CreateUser()
         {
             return View();

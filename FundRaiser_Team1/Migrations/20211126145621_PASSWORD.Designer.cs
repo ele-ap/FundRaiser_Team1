@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FundRaiser_Team1.Migrations
 {
     [DbContext(typeof(FundRaiserDbContext))]
-    [Migration("20211126104318_PASSWORD")]
+    [Migration("20211126145621_PASSWORD")]
     partial class PASSWORD
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
