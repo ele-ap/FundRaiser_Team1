@@ -14,7 +14,7 @@ namespace FundRaiser_Team1.Services
         {
             _db = adbContext;
         }
-        public void CreateCreator (Creator creator)
+        public void CreateCreator(Creator creator)
         {
             _db.Creator.Add(creator);
             try { _db.SaveChanges(); }
@@ -26,13 +26,13 @@ namespace FundRaiser_Team1.Services
             Creator creator = _db.Creator.Find(id);
             return creator;
         }
-       
+
         public List<Creator> ReadCreator()
         {
             return _db.Creator.ToList();
         }
 
-        
+
 
     }
 }

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace FundRaiser_Team1.Models
 {
-    public class Backer : User
+    public class CreatorAndBacker : User
     {
+        public List<Project> CreatedProjects { get; set; } = new List<Project>();
         public List<Project> FundedProjects { get; set; } = new List<Project>();
     }
 }

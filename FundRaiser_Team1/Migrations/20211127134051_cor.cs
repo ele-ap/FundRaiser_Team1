@@ -2,7 +2,7 @@
 
 namespace FundRaiser_Team1.Migrations
 {
-    public partial class PASSWORD : Migration
+    public partial class cor : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,8 @@ namespace FundRaiser_Team1.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Password = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Category = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,11 +32,29 @@ namespace FundRaiser_Team1.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Password = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Category = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Creator", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CreatorAndBacker",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Category = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CreatorAndBacker", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -45,6 +64,8 @@ namespace FundRaiser_Team1.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BackerId = table.Column<int>(type: "int", nullable: true),
+                    CreatorAndBackerId = table.Column<int>(type: "int", nullable: true),
+                    CreatorAndBackerId1 = table.Column<int>(type: "int", nullable: true),
                     CreatorId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -62,6 +83,18 @@ namespace FundRaiser_Team1.Migrations
                         principalTable: "Creator",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Project_CreatorAndBacker_CreatorAndBackerId",
+                        column: x => x.CreatorAndBackerId,
+                        principalTable: "CreatorAndBacker",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Project_CreatorAndBacker_CreatorAndBackerId1",
+                        column: x => x.CreatorAndBackerId1,
+                        principalTable: "CreatorAndBacker",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -77,9 +110,25 @@ namespace FundRaiser_Team1.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_CreatorAndBacker_Email",
+                table: "CreatorAndBacker",
+                column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Project_BackerId",
                 table: "Project",
                 column: "BackerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Project_CreatorAndBackerId",
+                table: "Project",
+                column: "CreatorAndBackerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Project_CreatorAndBackerId1",
+                table: "Project",
+                column: "CreatorAndBackerId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Project_CreatorId",
@@ -97,6 +146,9 @@ namespace FundRaiser_Team1.Migrations
 
             migrationBuilder.DropTable(
                 name: "Creator");
+
+            migrationBuilder.DropTable(
+                name: "CreatorAndBacker");
         }
     }
 }

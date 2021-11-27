@@ -8,7 +8,6 @@ namespace FundRaiser_Team1.Models
 {
     public class Creator : User
     {
-        public List<Project> CreatedProjects { get; set; } = new();
-       
+        public List<Project> CreatedProjects { get; set; } = new List<Project>();
     }
 }

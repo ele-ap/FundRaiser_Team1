@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FundRaiser_Team1.Migrations
 {
     [DbContext(typeof(FundRaiserDbContext))]
-    [Migration("20211126145621_PASSWORD")]
-    partial class PASSWORD
+    [Migration("20211127134051_cor")]
+    partial class cor
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,6 +28,9 @@ namespace FundRaiser_Team1.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -43,7 +46,9 @@ namespace FundRaiser_Team1.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -60,6 +65,9 @@ namespace FundRaiser_Team1.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -75,7 +83,9 @@ namespace FundRaiser_Team1.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -83,6 +93,43 @@ namespace FundRaiser_Team1.Migrations
                         .IsUnique();
 
                     b.ToTable("Creator");
+                });
+
+            modelBuilder.Entity("FundRaiser_Team1.Models.CreatorAndBacker", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.ToTable("CreatorAndBacker");
                 });
 
             modelBuilder.Entity("FundRaiser_Team1.Models.Project", b =>
@@ -95,12 +142,22 @@ namespace FundRaiser_Team1.Migrations
                     b.Property<int?>("BackerId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("CreatorAndBackerId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CreatorAndBackerId1")
+                        .HasColumnType("int");
+
                     b.Property<int?>("CreatorId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BackerId");
+
+                    b.HasIndex("CreatorAndBackerId");
+
+                    b.HasIndex("CreatorAndBackerId1");
 
                     b.HasIndex("CreatorId");
 
@@ -112,6 +169,14 @@ namespace FundRaiser_Team1.Migrations
                     b.HasOne("FundRaiser_Team1.Models.Backer", null)
                         .WithMany("FundedProjects")
                         .HasForeignKey("BackerId");
+
+                    b.HasOne("FundRaiser_Team1.Models.CreatorAndBacker", null)
+                        .WithMany("CreatedProjects")
+                        .HasForeignKey("CreatorAndBackerId");
+
+                    b.HasOne("FundRaiser_Team1.Models.CreatorAndBacker", null)
+                        .WithMany("FundedProjects")
+                        .HasForeignKey("CreatorAndBackerId1");
 
                     b.HasOne("FundRaiser_Team1.Models.Creator", null)
                         .WithMany("CreatedProjects")
@@ -126,6 +191,13 @@ namespace FundRaiser_Team1.Migrations
             modelBuilder.Entity("FundRaiser_Team1.Models.Creator", b =>
                 {
                     b.Navigation("CreatedProjects");
+                });
+
+            modelBuilder.Entity("FundRaiser_Team1.Models.CreatorAndBacker", b =>
+                {
+                    b.Navigation("CreatedProjects");
+
+                    b.Navigation("FundedProjects");
                 });
 #pragma warning restore 612, 618
         }
