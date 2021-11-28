@@ -30,7 +30,7 @@ namespace FundRaiser_Team1.Services
             return user;
         }
 
-        public List<User> ReadCreatorAndBacker()
+        public List<User> ReadUser()
         {
             return _db.User.ToList();
         }
