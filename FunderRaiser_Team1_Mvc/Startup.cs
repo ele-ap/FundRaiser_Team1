@@ -1,3 +1,5 @@
+using FundRaiser_Team1.Models;
+using FundRaiser_Team1.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,6 +25,10 @@ namespace FunderRaiser_Team1_Mvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<FundRaiserDbContext>();
+
+            services.AddScoped<IUserService, UserService>();
+
             services.AddControllersWithViews();
         }
 
