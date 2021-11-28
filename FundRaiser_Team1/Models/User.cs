@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FundRaiser_Team1.Models
 {
-    public abstract class User
+    public class User
     {
         [Key]
         public int Id { get; set; }
@@ -21,7 +21,8 @@ namespace FundRaiser_Team1.Models
         public string Password { get; set; }
         [Required]
         public Category Category { get; set; }
-
+        public List<Project> CreatedProjects { get; set; } = new List<Project>();
+        public List<Project> FundedProjects { get; set; } = new List<Project>();
 
     }
 }

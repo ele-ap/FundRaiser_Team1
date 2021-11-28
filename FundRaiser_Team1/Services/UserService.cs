@@ -7,30 +7,34 @@ using System.Threading.Tasks;
 
 namespace FundRaiser_Team1.Services
 {
-    public class BackerService : IBackerService
+    public class UserService : IUserService
     {
         private readonly FundRaiserDbContext _db;
 
-        public BackerService(FundRaiserDbContext adbContext)
+        public UserService(FundRaiserDbContext adbContext)
         {
             _db = adbContext;
         }
-        public void CreateBacker(Backer backer)
+
+        public void CreateUser(User user)
         {
-            _db.Backer.Add(backer);
+            _db.User.Add(user);
             try { _db.SaveChanges(); }
             catch { }
         }
 
-        public Backer ReadBacker(int id)
+        
+        public User ReadUser(int id)
         {
-            Backer backer = _db.Backer.Find(id);
-            return backer;
+            User user = _db.User.Find(id);
+            return user;
         }
 
-        public List<Backer> ReadBacker()
+        public List<User> ReadCreatorAndBacker()
         {
-            return _db.Backer.ToList();
+            return _db.User.ToList();
         }
+
+        
     }
 }
