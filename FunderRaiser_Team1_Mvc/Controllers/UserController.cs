@@ -7,6 +7,11 @@ namespace FunderRaiser_Team1_Mvc.Controllers
     public class UserController : Controller
     {
         private readonly IUserService userService;
+
+        public UserController(IUserService userService)
+        {
+            this.userService = userService;
+        }
         public IActionResult Index()
         {
             return View();
