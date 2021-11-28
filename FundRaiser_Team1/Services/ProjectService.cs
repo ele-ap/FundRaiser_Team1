@@ -50,10 +50,19 @@ namespace FundRaiser_Team1.Services
             return projectDb.ProjectCreator;
         }
 
-        public List<Package> GetPackages(int projectId)
+        //public List<Package> GetPackages(int projectId)
+        //{
+        //    var projectDb = _dbContext.Projects.Find(projectId);
+        //    return projectDb.AwardPackages;
+        //}
+        public List<Project> GetAllProjects(int pageCount, int pageSize)
         {
-            var projectDb = _dbContext.Projects.Find(projectId);
-            return projectDb.AwardPackages;
+            if (pageCount <= 0) pageCount = 1;
+            if (pageSize <= 0 || pageSize > 20) pageSize = 20;
+            return _dbContext.Projects
+                .Skip((pageCount - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
         }
 
         public Project GetProject(int projectId)
@@ -69,9 +78,9 @@ namespace FundRaiser_Team1.Services
             projectDb.Title = project.Title;
             projectDb.Description = project.Description;
             projectDb.StatusPost = project.StatusPost;
-            projectDb.Photos = project.Photos;
-            projectDb.Videos = project.Videos;
-            projectDb.AwardPackages = project.AwardPackages;
+            //projectDb.Photos = project.Photos;
+            //projectDb.Videos = project.Videos;
+            //projectDb.AwardPackages = project.AwardPackages;
             projectDb.Backers = project.Backers;
             projectDb.ProjectCreator = project.ProjectCreator;
 
