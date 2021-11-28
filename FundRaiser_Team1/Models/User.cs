@@ -18,6 +18,11 @@ namespace FundRaiser_Team1.Models
         public string LastName { get; set; }
         [Required, MaxLength(50)]
         public string Email { get; set; }
+
+        public User()
+        {
+
+        }
         public User(string FirstName,string LastName,string Email)
         {
             this.FirstName = FirstName;

@@ -8,7 +8,12 @@ namespace FundRaiser_Team1.Models
 {
     public class Backer : User
     {
-        public List<Project> FundedProjects { get; set; } = new List<Project>();
+        public List<Project>? FundedProjects { get; set; } = new List<Project>();
+
+        public Backer()
+        {
+
+        }
 
         public Backer(string FirstName, string LastName, string Email) : base(FirstName, LastName, Email)
         {
