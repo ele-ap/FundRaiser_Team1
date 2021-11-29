@@ -24,5 +24,6 @@ namespace FundRaiser_Team1.Models
         public List<Project> CreatedProjects { get; set; } = new List<Project>();
         public List<Project> FundedProjects { get; set; } = new List<Project>();
 
+       
     }
 }

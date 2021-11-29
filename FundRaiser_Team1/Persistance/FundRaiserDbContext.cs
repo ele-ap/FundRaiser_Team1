@@ -11,8 +11,8 @@ namespace FundRaiser_Team1.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=FundRaiserDB;User= sa; password= admin!@#123");
-            optionsBuilder.UseSqlServer("Data Source=VASILISCHATZIS-\\SQLSERVER2019;Initial Catalog=FundRaiserDB;Integrated Security=True");
+             optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=FundRaiserDB;User= sa; password= admin!@#123");
+            //optionsBuilder.UseSqlServer("Data Source=VASILISCHATZIS-\\SQLSERVER2019;Initial Catalog=FundRaiserDB;Integrated Security=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
