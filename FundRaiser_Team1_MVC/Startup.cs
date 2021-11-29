@@ -1,3 +1,4 @@
+using FundRaiser_Team1.Models;
 using FundRaiser_Team1.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +26,7 @@ namespace FundRaiser_Team1_MVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<FundRaiserDbContext>();
             services.AddScoped<IProjectService, ProjectService>();
         }
 
