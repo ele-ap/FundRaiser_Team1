@@ -55,6 +55,7 @@ namespace FundRaiser_Team1.Services
         //    var projectDb = _dbContext.Projects.Find(projectId);
         //    return projectDb.AwardPackages;
         //}
+
         public List<Project> GetAllProjects(int pageCount, int pageSize)
         {
             if (pageCount <= 0) pageCount = 1;
