@@ -19,12 +19,36 @@ namespace FundRaiser_Team1.Migrations
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("FundRaiser_Team1.Models.Package", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PackageName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("PackagePrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Package");
+                });
+
             modelBuilder.Entity("FundRaiser_Team1.Models.Project", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("PackageId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
@@ -33,6 +57,8 @@ namespace FundRaiser_Team1.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PackageId");
 
                     b.HasIndex("UserId");
 
@@ -80,6 +106,10 @@ namespace FundRaiser_Team1.Migrations
 
             modelBuilder.Entity("FundRaiser_Team1.Models.Project", b =>
                 {
+                    b.HasOne("FundRaiser_Team1.Models.Package", null)
+                        .WithMany("Projects")
+                        .HasForeignKey("PackageId");
+
                     b.HasOne("FundRaiser_Team1.Models.User", null)
                         .WithMany("CreatedProjects")
                         .HasForeignKey("UserId");
@@ -87,6 +117,11 @@ namespace FundRaiser_Team1.Migrations
                     b.HasOne("FundRaiser_Team1.Models.User", null)
                         .WithMany("FundedProjects")
                         .HasForeignKey("UserId1");
+                });
+
+            modelBuilder.Entity("FundRaiser_Team1.Models.Package", b =>
+                {
+                    b.Navigation("Projects");
                 });
 
             modelBuilder.Entity("FundRaiser_Team1.Models.User", b =>
