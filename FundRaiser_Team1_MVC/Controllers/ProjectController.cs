@@ -23,6 +23,13 @@ namespace FundRaiser_Team1_MVC.Controllers
             return View(project);
         }
 
+        //GET: ProjectController/GetProject/id
+        public ActionResult GetProject(int id)
+        {
+            var project = _projectService.GetProject(id);
+            return View(project);
+        }
+
         // GET: ProjectController/Details/5
         public ActionResult Details(int id)
         {
