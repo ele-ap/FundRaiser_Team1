@@ -19,7 +19,7 @@ namespace FundRaiser_Team1_MVC.Controllers
         // GET: ProjectController
         public ActionResult Index()
         {
-            var project = _projectService.GetAllProjects(1,5);
+            var project = _projectService.GetAllProjects(1,9);
             return View(project);
         }
 
