@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundRaiser_Team1", "FundRaiser_Team1\FundRaiser_Team1.csproj", "{D6C1C254-CE70-49EE-972E-23C4CA80375A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundRaiser_Team1_MVC", "FundRaiser_Team1_MVC\FundRaiser_Team1_MVC.csproj", "{F036C5BA-6DCC-4FE2-AA12-1B8004664F44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundRaiser_Team1_Mvc", "FundRaiser_Team1_MVC\FundRaiser_Team1_Mvc.csproj", "{F036C5BA-6DCC-4FE2-AA12-1B8004664F44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
