@@ -4,8 +4,8 @@ namespace FundRaiser_Team1.Models
 {
     public class FundRaiserDbContext: DbContext
     {
-        public DbSet<Creator> Creator { get; set; }
-        public DbSet<Backer> Backer { get; set; }
+        public DbSet<User> User { get; set; }
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -15,16 +15,14 @@ namespace FundRaiser_Team1.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Creator>().ToTable("Creator");
-            modelBuilder.Entity<Backer>().ToTable("Backer");
+            modelBuilder.Entity<User>().ToTable("User");
+            
 
-            modelBuilder.Entity<Creator>()
-                .HasIndex(creator => creator.Email)
+            modelBuilder.Entity<User>()
+                .HasIndex(user => user.Email)
                 .IsUnique();
 
-            modelBuilder.Entity<Backer>()
-                .HasIndex(backer => backer.Email)
-                .IsUnique();
+            
         }
 
     }

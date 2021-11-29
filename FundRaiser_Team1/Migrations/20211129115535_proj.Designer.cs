@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FundRaiser_Team1.Migrations
 {
     [DbContext(typeof(FundRaiserDbContext))]
-    [Migration("20211125103614_FRDBC")]
-    partial class FRDBC
+    [Migration("20211129115535_proj")]
+    partial class proj
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,64 +21,6 @@ namespace FundRaiser_Team1.Migrations
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("FundRaiser_Team1.Models.Backer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("FirstName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.ToTable("Backer");
-                });
-
-            modelBuilder.Entity("FundRaiser_Team1.Models.Creator", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("FirstName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.ToTable("Creator");
-                });
-
             modelBuilder.Entity("FundRaiser_Team1.Models.Project", b =>
                 {
                     b.Property<int>("Id")
@@ -86,40 +28,74 @@ namespace FundRaiser_Team1.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("BackerId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CreatorId")
+                    b.Property<int?>("UserId1")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BackerId");
+                    b.HasIndex("UserId");
 
-                    b.HasIndex("CreatorId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Project");
                 });
 
+            modelBuilder.Entity("FundRaiser_Team1.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.ToTable("User");
+                });
+
             modelBuilder.Entity("FundRaiser_Team1.Models.Project", b =>
                 {
-                    b.HasOne("FundRaiser_Team1.Models.Backer", null)
-                        .WithMany("FundedProjects")
-                        .HasForeignKey("BackerId");
-
-                    b.HasOne("FundRaiser_Team1.Models.Creator", null)
+                    b.HasOne("FundRaiser_Team1.Models.User", null)
                         .WithMany("CreatedProjects")
-                        .HasForeignKey("CreatorId");
+                        .HasForeignKey("UserId");
+
+                    b.HasOne("FundRaiser_Team1.Models.User", null)
+                        .WithMany("FundedProjects")
+                        .HasForeignKey("UserId1");
                 });
 
-            modelBuilder.Entity("FundRaiser_Team1.Models.Backer", b =>
-                {
-                    b.Navigation("FundedProjects");
-                });
-
-            modelBuilder.Entity("FundRaiser_Team1.Models.Creator", b =>
+            modelBuilder.Entity("FundRaiser_Team1.Models.User", b =>
                 {
                     b.Navigation("CreatedProjects");
+
+                    b.Navigation("FundedProjects");
                 });
 #pragma warning restore 612, 618
         }
