@@ -14,9 +14,8 @@ namespace FundRaiser_Team1.Services
         public List<Project> GetAllProjects(int pageCount, int pageSize);
         public Project UpdateProject(int projectId, Project project);
         public bool DeleteProject(int projectId);
-        //public List<Package> GetPackages(int projectId);
-        public List<Backer> GetBackers(int projectId);
-        public Creator GetCreator(int projectId);
-
+        public List<Package> GetPackages(int projectId);
+        public List<User> GetBackers(int projectId);
+        public User GetCreator(int projectId);
     }
 }

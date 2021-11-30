@@ -18,11 +18,11 @@ namespace FundRaiser_Team1.Services
         }
         public Project CreateProject(int creatorId)
         {
-            var creator = _dbContext.Creator.Find(creatorId);
+            var creator = _dbContext.Users.Find(creatorId);
             if (creator is null) return null;
             var project = new Project()
             {
-                ProjectCreator = creator            
+                Creator = creator            
             };
             _dbContext.Projects.Add(project);
             _dbContext.SaveChanges();
@@ -38,23 +38,23 @@ namespace FundRaiser_Team1.Services
             return _dbContext.SaveChanges() == 1;
         }
 
-        public List<Backer> GetBackers(int projectId)
+        public List<User> GetBackers(int projectId)
         {
             var projectDb = _dbContext.Projects.Find(projectId);
             return projectDb.Backers;
         }
 
-        public Creator GetCreator(int projectId)
+        public User GetCreator(int projectId)
         {
             var projectDb = _dbContext.Projects.Find(projectId);
-            return projectDb.ProjectCreator;
+            return projectDb.Creator;
         }
 
-        //public List<Package> GetPackages(int projectId)
-        //{
-        //    var projectDb = _dbContext.Projects.Find(projectId);
-        //    return projectDb.AwardPackages;
-        //}
+        public List<Package> GetPackages(int projectId)
+        {
+            var projectDb = _dbContext.Projects.Find(projectId);
+            return projectDb.AwardPackages;
+        }
 
         public List<Project> GetAllProjects(int pageCount, int pageSize)
         {
@@ -81,9 +81,9 @@ namespace FundRaiser_Team1.Services
             projectDb.StatusPost = project.StatusPost;
             //projectDb.Photos = project.Photos;
             //projectDb.Videos = project.Videos;
-            //projectDb.AwardPackages = project.AwardPackages;
+            projectDb.AwardPackages = project.AwardPackages;
             projectDb.Backers = project.Backers;
-            projectDb.ProjectCreator = project.ProjectCreator;
+            projectDb.Creator = project.Creator;
 
             _dbContext.SaveChanges();
             return projectDb;

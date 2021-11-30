@@ -9,25 +9,23 @@ namespace FundRaiser_Team1.Models
 {
     public abstract class User
     {
-        [Key]
-        public int Id { get; set; }
-        [MaxLength(50)]
-        public string FirstName { get; set; }
-        [Required]
-        [MaxLength(50)]
-        public string LastName { get; set; }
-        [Required, MaxLength(50)]
-        public string Email { get; set; }
-
-        public User()
+        public class User
         {
+            [Key]
+            public int Id { get; set; }
+            [MaxLength(50)]
+            public string FirstName { get; set; }
+            [Required, MaxLength(50)]
+            public string LastName { get; set; }
+            [Required, MaxLength(50)]
+            public string Email { get; set; }
+            [Required, MaxLength(50)]
+            public string Password { get; set; }
+            [Required]
+            public Category Category { get; set; }
+            public List<Project> CreatedProjects { get; set; } = new List<Project>();
+            public List<Project> FundedProjects { get; set; } = new List<Project>();
 
-        }
-        public User(string FirstName,string LastName,string Email)
-        {
-            this.FirstName = FirstName;
-            this.LastName = LastName;
-            this.Email = Email;
         }
     }
 }
