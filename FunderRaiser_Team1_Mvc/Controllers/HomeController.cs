@@ -3,17 +3,17 @@ using FundRaiser_Team1.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Data;
+using System.Web;
 
 namespace FunderRaiser_Team1_Mvc.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+     
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -37,6 +37,7 @@ namespace FunderRaiser_Team1_Mvc.Controllers
         [HttpPost]
         public IActionResult SignIn(String email,string password)
         {
+            
             try
             {
                 using (FundRaiserDbContext db = new FundRaiserDbContext())
@@ -50,6 +51,10 @@ namespace FunderRaiser_Team1_Mvc.Controllers
 
                         if (password.Equals(u.Password))
                         {
+                            HttpContext.Response.Cookies.Append("userId"," "+u.Id);
+
+                            
+
                             return RedirectToAction(nameof(Index));
                         }
                         return View();
