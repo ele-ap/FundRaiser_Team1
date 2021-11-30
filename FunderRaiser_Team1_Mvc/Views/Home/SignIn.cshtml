@@ -5,14 +5,14 @@
 
 <form asp-action="SignIn">
     <div class="form-group">
-        <label for="inputEmail">Email</label>
-        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+        <label for="Email">Email</label>
+        <input name="Email" type="email" class="form-control" id="inputEmail" placeholder="Email">
     </div>
     <div class="form-group">
-        <label for="inputPassword">Password</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        <label for="Password">Password</label>
+        <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Password">
     </div>
     <button type="submit" class="btn btn-primary" style="width:100%">Sign in</button>
 </form>
 
-<!--<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CreateUser">Create Your User</a>-->
+<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CreateUser">Create Your User</a>

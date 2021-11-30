@@ -1,4 +1,5 @@
 ﻿using FunderRaiser_Team1_Mvc.Models;
+using FundRaiser_Team1.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -32,9 +33,37 @@ namespace FunderRaiser_Team1_Mvc.Controllers
         {
             return View();
         }
-    
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [HttpPost]
+        public IActionResult SignIn(String email,string password)
+        {
+            try
+            {
+                using (FundRaiserDbContext db = new FundRaiserDbContext())
+                {
+                    User u = (from user in db.User
+                              where user.Email == email
+                              select user).SingleOrDefault();
+
+                    if (u != null)
+                    {
+
+                        if (password.Equals(u.Password))
+                        {
+                            return RedirectToAction(nameof(Index));
+                        }
+                        return View();
+                    }
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
