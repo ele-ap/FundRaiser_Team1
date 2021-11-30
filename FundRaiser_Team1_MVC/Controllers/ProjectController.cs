@@ -1,4 +1,5 @@
-﻿using FundRaiser_Team1.Services;
+﻿using FundRaiser_Team1.Models;
+using FundRaiser_Team1.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -31,10 +32,16 @@ namespace FundRaiser_Team1_MVC.Controllers
             return View(project);
         }
 
-        // GET: ProjectController/Create
-        public ActionResult Create()
+        public ActionResult CreateProject()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateProject(Project project)
+        {
+            _projectService.CreateProject(project);
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: ProjectController/Create

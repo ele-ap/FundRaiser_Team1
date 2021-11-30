@@ -9,7 +9,7 @@ namespace FundRaiser_Team1.Services
 {
     public interface IProjectService
     {
-        public Project CreateProject(int creatorId);
+        public Project CreateProject(Project project);
         public Project GetProject(int projectId);
         public List<Project> GetAllProjects();
         public Project UpdateProject(int projectId, Project project);

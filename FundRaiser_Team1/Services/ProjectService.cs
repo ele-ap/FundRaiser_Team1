@@ -16,14 +16,8 @@ namespace FundRaiser_Team1.Services
         {
             _dbContext = dbContext;
         }
-        public Project CreateProject(int creatorId)
+        public Project CreateProject(Project project)
         {
-            var creator = _dbContext.User.Find(creatorId);
-            if (creator is null) return null;
-            var project = new Project()
-            {
-                         
-            };
             _dbContext.Projects.Add(project);
             _dbContext.SaveChanges();
             return project;
