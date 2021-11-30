@@ -7,25 +7,20 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FundRaiser_Team1.Models
 {
-    public abstract class User
+    public class User
     {
-        public class User
-        {
-            [Key]
-            public int Id { get; set; }
-            [MaxLength(50)]
-            public string FirstName { get; set; }
-            [Required, MaxLength(50)]
-            public string LastName { get; set; }
-            [Required, MaxLength(50)]
-            public string Email { get; set; }
-            [Required, MaxLength(50)]
-            public string Password { get; set; }
-            [Required]
-            public Category Category { get; set; }
-            public List<Project> CreatedProjects { get; set; } = new List<Project>();
-            public List<Project> FundedProjects { get; set; } = new List<Project>();
-
-        }
+        [Key]
+        public int Id { get; set; }
+        [MaxLength(50)]
+        public string FirstName { get; set; }
+        [Required, MaxLength(50)]
+        public string LastName { get; set; }
+        [Required, MaxLength(50)]
+        public string Email { get; set; }
+        [Required, MaxLength(50)]
+        public string Password { get; set; }
+        [Required]
+        public Category Category { get; set; }
+        public List<Project> Projects { get; set; } 
     }
 }

@@ -7,32 +7,34 @@ using System.Threading.Tasks;
 
 namespace FundRaiser_Team1.Services
 {
-
-    public class PackageService : IPackageService
+    public class UserService : IUserService
     {
         private readonly FundRaiserDbContext _db;
 
-        public PackageService(FundRaiserDbContext adbContext)
+        public UserService(FundRaiserDbContext adbContext)
         {
             _db = adbContext;
         }
 
-        public void CreatePackage(Package package)
+        public void CreateUser(User user)
         {
-            _db.Package.Add(package);
+            _db.User.Add(user);
             try { _db.SaveChanges(); }
             catch { }
         }
 
-        public Package ReadPackage(int id)
+        
+        public User ReadUser(int id)
         {
-            Package package = _db.Package.Find(id);
-            return package;
+            User user = _db.User.Find(id);
+            return user;
         }
 
-        public List<Package> ReadPackages()
+        public List<User> ReadUser()
         {
-            return _db.Package.ToList();
+            return _db.User.ToList();
         }
+
+        
     }
 }

@@ -1,4 +1,5 @@
-﻿using FundRaiser_Team1_MVC.Models;
+﻿using FundRaiser_Team1.Models;
+using FundRaiser_Team1_MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -7,7 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FundRaiser_Team1_MVC.Controllers
+namespace FunderRaiser_Team1_Mvc.Controllers
 {
     public class HomeController : Controller
     {
@@ -23,15 +24,22 @@ namespace FundRaiser_Team1_MVC.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult SignIn()
         {
             return View();
         }
+      
+        public IActionResult CreateUser()
+        {
+            return View();
+        }
+    
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }

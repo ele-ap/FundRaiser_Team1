@@ -3,14 +3,16 @@ using FundRaiser_Team1.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FundRaiser_Team1.Migrations
 {
     [DbContext(typeof(FundRaiserDbContext))]
-    partial class FundRaiserDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211130130840_db")]
+    partial class db
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,24 +60,6 @@ namespace FundRaiser_Team1.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Projects");
-                });
-
-            modelBuilder.Entity("FundRaiser_Team1.Models.ProjectUser", b =>
-                {
-                    b.Property<int>("ProjectId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Category")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProjectId", "UserId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("ProjectUser");
                 });
 
             modelBuilder.Entity("FundRaiser_Team1.Models.User", b =>
@@ -127,19 +111,19 @@ namespace FundRaiser_Team1.Migrations
                     b.ToTable("PackageProject");
                 });
 
-            modelBuilder.Entity("FundRaiser_Team1.Models.ProjectUser", b =>
+            modelBuilder.Entity("ProjectUser", b =>
                 {
-                    b.HasOne("FundRaiser_Team1.Models.Project", null)
-                        .WithMany()
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("ProjectsId")
+                        .HasColumnType("int");
 
-                    b.HasOne("FundRaiser_Team1.Models.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("UsersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProjectsId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("ProjectUser");
                 });
 
             modelBuilder.Entity("PackageProject", b =>
@@ -153,6 +137,21 @@ namespace FundRaiser_Team1.Migrations
                     b.HasOne("FundRaiser_Team1.Models.Project", null)
                         .WithMany()
                         .HasForeignKey("ProjectsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ProjectUser", b =>
+                {
+                    b.HasOne("FundRaiser_Team1.Models.Project", null)
+                        .WithMany()
+                        .HasForeignKey("ProjectsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FundRaiser_Team1.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

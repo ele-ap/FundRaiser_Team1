@@ -18,11 +18,11 @@ namespace FundRaiser_Team1.Services
         }
         public Project CreateProject(int creatorId)
         {
-            var creator = _dbContext.Users.Find(creatorId);
+            var creator = _dbContext.User.Find(creatorId);
             if (creator is null) return null;
             var project = new Project()
             {
-                Creator = creator            
+                         
             };
             _dbContext.Projects.Add(project);
             _dbContext.SaveChanges();
@@ -41,13 +41,13 @@ namespace FundRaiser_Team1.Services
         public List<User> GetBackers(int projectId)
         {
             var projectDb = _dbContext.Projects.Find(projectId);
-            return projectDb.Backers;
+            return projectDb.Users;
         }
 
         public User GetCreator(int projectId)
         {
             var projectDb = _dbContext.Projects.Find(projectId);
-            return projectDb.Creator;
+            return (User)projectDb.Users.Where(user => user.Category == Category.CREATOR);
         }
 
         public List<Package> GetPackages(int projectId)
@@ -82,8 +82,6 @@ namespace FundRaiser_Team1.Services
             //projectDb.Photos = project.Photos;
             //projectDb.Videos = project.Videos;
             projectDb.AwardPackages = project.AwardPackages;
-            projectDb.Backers = project.Backers;
-            projectDb.Creator = project.Creator;
 
             _dbContext.SaveChanges();
             return projectDb;
