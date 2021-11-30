@@ -16,10 +16,11 @@ namespace FundRaiser_Team1_MVC.Controllers
         {
             _projectService = projectService;
         }
+
         // GET: ProjectController
         public ActionResult Index()
         {
-            var project = _projectService.GetAllProjects(1,9);
+            var project = _projectService.GetAllProjects();
             return View(project);
         }
 
@@ -28,12 +29,6 @@ namespace FundRaiser_Team1_MVC.Controllers
         {
             var project = _projectService.GetProject(id);
             return View(project);
-        }
-
-        // GET: ProjectController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
         }
 
         // GET: ProjectController/Create
