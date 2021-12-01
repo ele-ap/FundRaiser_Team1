@@ -33,6 +33,15 @@ namespace FunderRaiser_Team1_Mvc.Controllers
         {
             return View();
         }
+        public IActionResult LogOut()
+        {
+            //Delete Cookies
+            if (Request.Cookies["userId"] != null)
+            {
+                Response.Cookies.Delete("userId");
+            }
+            return RedirectToAction(nameof(SignIn));
+        }
 
         [HttpPost]
         public IActionResult SignIn(String email,string password)
