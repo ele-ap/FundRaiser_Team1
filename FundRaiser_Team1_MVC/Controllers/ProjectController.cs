@@ -81,9 +81,10 @@ namespace FundRaiser_Team1_MVC.Controllers
         }
 
         // GET: ProjectController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult DeleteProject(int id)
         {
-            return View();
+            _projectService.DeleteProject(id);
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: ProjectController/Delete/5
