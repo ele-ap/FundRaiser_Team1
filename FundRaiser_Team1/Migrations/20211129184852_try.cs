@@ -2,7 +2,7 @@
 
 namespace FundRaiser_Team1.Migrations
 {
-    public partial class packages : Migration
+    public partial class @try : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
