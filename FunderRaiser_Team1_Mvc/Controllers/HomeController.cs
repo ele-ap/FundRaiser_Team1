@@ -60,10 +60,7 @@ namespace FunderRaiser_Team1_Mvc.Controllers
 
                         if (password.Equals(u.Password))
                         {
-                            HttpContext.Response.Cookies.Append("userId"," "+u.Id);
-
-                            
-
+                            HttpContext.Response.Cookies.Append("userId",u.Id.ToString());
                             return RedirectToAction(nameof(Index));
                         }
                         return View();
