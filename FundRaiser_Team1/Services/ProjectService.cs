@@ -57,7 +57,8 @@ namespace FundRaiser_Team1.Services
 
         public Project GetProject(int projectId)
         {
-            var projectDb = _dbContext.Projects.Find(projectId);
+            var projectDb = _dbContext.Projects.Include(project => project.Users)
+                                               .FirstOrDefault(project => project.Id == projectId);
             return projectDb;
         }
 
