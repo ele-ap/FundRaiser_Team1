@@ -61,7 +61,20 @@ namespace FunderRaiser_Team1_Mvc.Controllers
                         if (password.Equals(u.Password))
                         {
                             HttpContext.Response.Cookies.Append("userId",u.Id.ToString());
-                            return RedirectToAction(nameof(Index));
+
+                            if (((u.Category).ToString()).Equals("CREATOR"))
+                            {
+                                return RedirectToAction(nameof(Index));
+                            }
+                            if (((u.Category).ToString()).Equals("BACKER"))
+                            {
+                                return RedirectToAction(nameof(Index)); 
+                            }
+                            if (((u.Category).ToString()).Equals("BOTH"))
+                            {
+                                return RedirectToAction(nameof(Index));
+                            }
+
                         }
                         return View();
                     }
