@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundRaiser_Team1", "FundRaiser_Team1\FundRaiser_Team1.csproj", "{D6C1C254-CE70-49EE-972E-23C4CA80375A}"
 EndProject
+
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundRaiser_Team1_Mvc", "FundRaiser_Team1_MVC\FundRaiser_Team1_Mvc.csproj", "{F036C5BA-6DCC-4FE2-AA12-1B8004664F44}"
+
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundRaiser_Team1_Mvc", "FunderRaiser_Team1_Mvc\FundRaiser_Team1_Mvc.csproj", "{CE8C44D4-686D-4A6D-93E9-8CD8C10386DB}"
+
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundRaiser_Team1_API", "FundRaiser_Team1_API\FundRaiser_Team1_API.csproj", "{A5C469D4-EC04-4E5A-BD04-FF92AA113FCE}"
 EndProject
@@ -19,6 +23,12 @@ Global
 		{D6C1C254-CE70-49EE-972E-23C4CA80375A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6C1C254-CE70-49EE-972E-23C4CA80375A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6C1C254-CE70-49EE-972E-23C4CA80375A}.Release|Any CPU.Build.0 = Release|Any CPU
+
+		{F036C5BA-6DCC-4FE2-AA12-1B8004664F44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F036C5BA-6DCC-4FE2-AA12-1B8004664F44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F036C5BA-6DCC-4FE2-AA12-1B8004664F44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F036C5BA-6DCC-4FE2-AA12-1B8004664F44}.Release|Any CPU.Build.0 = Release|Any CPU
+
 		{CE8C44D4-686D-4A6D-93E9-8CD8C10386DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CE8C44D4-686D-4A6D-93E9-8CD8C10386DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE8C44D4-686D-4A6D-93E9-8CD8C10386DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
