@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model FundRaiser_Team1.Models.Project
+
+<h1> @Model.Title  </h1>
+<h6><i>"@Model.StatusPost"</i></h6>
+<br />
+
+
+<p> @Model.Description </p>
+<a href="/Project/DeleteProject/@Model.Id" style="color:red;">Delete this project</a>
+
+<h3>Project Backers</h3>
+
+@foreach(var users in Model.Users)
+{
+    <ul>
+        <li>@users.FirstName @users.LastName</li>
+    </ul>            
+}

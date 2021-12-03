@@ -1,0 +1,16 @@
+﻿@model List<FundRaiser_Team1.Models.Project>
+
+<h1> Projects </h1>
+<br />
+@foreach (var project in Model)
+{
+    <div class="card" style="width: 18rem; display:inline-block;">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@project.Title</h5>
+            <p class="card-text">@project.Description</p>
+            <a href="/Project/GetProject/@project.Id" class="btn btn-primary">View</a>
+        </div>
+    </div>
+}
+
