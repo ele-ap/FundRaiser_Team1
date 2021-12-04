@@ -55,7 +55,7 @@ namespace FundRaiser_Team1_MVC.Controllers
                 var filePath = Path.Combine(uploads, uniqueFileName);
                 img.CopyTo(new FileStream(filePath, FileMode.Create));
 
-                project.Photos.Add(uniqueFileName);
+                project.Photo = uniqueFileName;
             }
 
             _projectService.CreateProject(project);
