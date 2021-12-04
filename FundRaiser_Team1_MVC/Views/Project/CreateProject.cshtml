@@ -1,12 +1,13 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
+@{  
 }
 
 @using FundRaiser_Team1.Models
 @model FundRaiser_Team1_Mvc.Models.ProjectWithImage
 
+<h1>Create your project</h1>
 
 <form asp-action="CreateProject" enctype="multipart/form-data">
     <div class="form-group">
@@ -15,15 +16,15 @@
     </div>
     <div class="form-group">
         <label for="Description">Description:</label>
-        <input type="text" class="form-control" name="Project.Description" placeholder="Description">
+        <textarea class="form-control" name="Project.Description" rows="5"></textarea>
     </div>
     <div class="form-group">
         <label for="Status">Status:</label>
         <input type="text" class="form-control" name="Project.StatusPost" placeholder="Status">
     </div>
     <div class="form-group">
-        <label for="ProjectImage">Project Image</label>
-        <input type="file" class="form-control" name="ProjectImage">
+        <label for="ProjectImage">Project Image:</label><br />
+        <input type="file" class="form-control-file" name="ProjectImage">
     </div>
     <button type="submit" class="btn btn-primary">Create</button>
 </form>
