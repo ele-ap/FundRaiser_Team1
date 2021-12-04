@@ -16,6 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\FundRaiser_Team1\FundRaiser_Team1.csproj" />
   </ItemGroup>
 

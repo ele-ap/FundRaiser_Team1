@@ -1,21 +1,27 @@
 ﻿using FundRaiser_Team1.Models;
 using FundRaiser_Team1.Services;
+using FundRaiser_Team1_Mvc.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace FundRaiser_Team1_MVC.Controllers
 {
     public class ProjectController : Controller
     {
         private readonly IProjectService _projectService;
+        private readonly IHostEnvironment _hostEnvironment;
 
-        public ProjectController(IProjectService projectService)
+        public ProjectController(IProjectService projectService, IHostEnvironment hostEnvironment)
         {
             _projectService = projectService;
+            _hostEnvironment = hostEnvironment;
         }
 
         // GET: ProjectController
@@ -38,9 +44,22 @@ namespace FundRaiser_Team1_MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateProject(Project project)
+        public ActionResult CreateProject(ProjectWithImage projectWithImage)
         {
+            Project project = projectWithImage.Project;
+            var img = projectWithImage.ProjectImage;
+            if (img != null)
+            {
+                var uniqueFileName = GetUniqueFileName(img.FileName);
+                var uploads = Path.Combine(_hostEnvironment.ContentRootPath + "\\wwwroot", "images");
+                var filePath = Path.Combine(uploads, uniqueFileName);
+                img.CopyTo(new FileStream(filePath, FileMode.Create));
+
+                project.Photo = uniqueFileName;
+            }
+
             _projectService.CreateProject(project);
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -101,5 +120,14 @@ namespace FundRaiser_Team1_MVC.Controllers
                 return View();
             }
         }
+        private string GetUniqueFileName(string fileName)
+        {
+            fileName = Path.GetFileName(fileName);
+            return Path.GetFileNameWithoutExtension(fileName)
+                      + "_"
+                      + Guid.NewGuid().ToString().Substring(0, 4)
+                      + Path.GetExtension(fileName);
+        }
     }
+
 }
