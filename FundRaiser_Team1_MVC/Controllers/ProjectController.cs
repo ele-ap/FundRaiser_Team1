@@ -59,6 +59,7 @@ namespace FundRaiser_Team1_MVC.Controllers
             }
 
             _projectService.CreateProject(project);
+         
 
             return RedirectToAction(nameof(Index));
         }

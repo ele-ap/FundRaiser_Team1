@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FundRaiser_Team1.Migrations
 {
     [DbContext(typeof(FundRaiserDbContext))]
-    [Migration("20211204124048_try")]
-    partial class @try
+    [Migration("20211204162213_trfy")]
+    partial class trfy
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

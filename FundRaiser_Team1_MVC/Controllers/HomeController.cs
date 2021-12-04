@@ -74,7 +74,7 @@ namespace FunderRaiser_Team1_Mvc.Controllers
                                     Expires = DateTimeOffset.Now.AddMinutes(40)
                                 });
 
-                            if (((u.Category).ToString()).Equals("CREATOR"))
+                            /*if (((u.Category).ToString()).Equals("CREATOR"))
                             {  
                                 return RedirectToAction(nameof(Index));
                             }
@@ -83,9 +83,9 @@ namespace FunderRaiser_Team1_Mvc.Controllers
                                 return RedirectToAction(nameof(Index));
                             }
                             if (((u.Category).ToString()).Equals("BOTH"))
-                            {
+                            {*/
                                 return RedirectToAction(nameof(Index));
-                            }
+                            //}
 
                         }
                         return View();
