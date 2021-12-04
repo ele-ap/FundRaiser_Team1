@@ -12,7 +12,7 @@ namespace FundRaiser_Team1.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public string StatusPost { get; set; }
-        //public List<string> Photos { get; set; }
+        public List<string> Photos { get; set; }
         //public List<string> Videos { get; set; }
         public List<Package> AwardPackages { get; set; }
         public List<User> Users { get; set; }

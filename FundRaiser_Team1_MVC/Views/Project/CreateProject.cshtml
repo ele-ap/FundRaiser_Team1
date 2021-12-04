@@ -5,18 +5,25 @@
 }
 
 @using FundRaiser_Team1.Models
+@model FundRaiser_Team1_Mvc.Models.ProjectWithImage
 
-<form asp-action="CreateProject">
-    <div>Title:</div>
-    <input type="text" name="Title" placeholder="Title" />
 
-    <div>Description:</div>
-    <input type="text" name="Description" placeholder="Description" />
-
-    <div>Status:</div>
-    <input type="text" name="StatusPost" placeholder="Title" />
-
+<form asp-action="CreateProject" enctype="multipart/form-data">
     <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
+        <label for="Title">Title:</label>
+        <input type="text" class="form-control" name="Project.Title" placeholder="Enter project title">
     </div>
+    <div class="form-group">
+        <label for="Description">Description:</label>
+        <input type="text" class="form-control" name="Project.Description" placeholder="Description">
+    </div>
+    <div class="form-group">
+        <label for="Status">Status:</label>
+        <input type="text" class="form-control" name="Project.StatusPost" placeholder="Status">
+    </div>
+    <div class="form-group">
+        <label for="ProjectImage">Project Image</label>
+        <input type="file" class="form-control" name="ProjectImage">
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
 </form>
