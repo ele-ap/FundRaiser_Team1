@@ -1,22 +1,23 @@
-﻿@using FundRaiser_Team1.Models
+﻿
+@using FundRaiser_Team1.Models
 @{
     ViewData["Title"] = "Sign Up";
 }
 <h1>@ViewData["Title"]</h1>
 
 <form asp-action="Create">
-    <div class="form-group">
+     <div class="form-group">
         <label for="inputUser">User</label>
-        <br />
+        <br/>
         <select name="Category" placeholder="Category" asp-items="@(Html.GetEnumSelectList<Category>())" style="width:100%"></select>
     </div>
     <div class="form-group">
         <label for="FirstName">First Name</label>
-        <input type="text" name="FirstName" class="form-control" id="inputFirstName" placeholder="First Name" />
+        <input type="text"  name="FirstName" class="form-control" id="inputFirstName" placeholder="First Name"/>
     </div>
     <div class="form-group">
         <label for="LastName">Last Name</label>
-        <input type="text" name="LastName" class="form-control" id="inputLastName" placeholder="Last Name">
+        <input type="text" name="LastName"class="form-control" id="inputLastName" placeholder="Last Name">
     </div>
     <div class="form-group">
         <label for="Email">E-mail</label>
