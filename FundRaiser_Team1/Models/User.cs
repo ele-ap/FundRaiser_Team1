@@ -22,5 +22,6 @@ namespace FundRaiser_Team1.Models
         [Required]
         public Category Category { get; set; }
         public List<Project> Projects { get; set; } 
+
     }
 }
