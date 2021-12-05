@@ -96,5 +96,14 @@ namespace FundRaiser_Team1.Services
         {
             return _dbContext.ProjectUser.ToList();
         }
+
+        public bool DeleteProjectUser(int projectUserId)
+        {
+            var projectDb = _dbContext.ProjectUser.Find(projectUserId);
+            if (projectDb is null) return false;
+            _dbContext.ProjectUser.Remove(projectDb);
+
+            return _dbContext.SaveChanges() == 1;
+        }
     }
 }

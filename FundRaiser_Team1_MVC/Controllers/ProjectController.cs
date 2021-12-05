@@ -110,6 +110,24 @@ namespace FundRaiser_Team1_MVC.Controllers
         public ActionResult DeleteProject(int id)
         {
             _projectService.DeleteProject(id);
+            try
+            {
+                using (FundRaiserDbContext db = new FundRaiserDbContext())
+                {
+                    ProjectUser pu = (from projectUser in db.ProjectUser
+                                      where projectUser.ProjectId == id
+                                      select projectUser).SingleOrDefault();
+
+                    if (pu != null)
+                    {
+                        _projectService.DeleteProjectUser(pu.ProjectUserId);
+                    }
+                }
+            }
+            catch
+            {
+                throw;
+            }
             return RedirectToAction(nameof(Index));
         }
 

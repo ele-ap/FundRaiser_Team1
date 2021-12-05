@@ -25,6 +25,11 @@ namespace FundRaiser_Team1.Services
            
         }
 
+        public bool DeleteProjectUser(int projectUserId)
+        {
+            throw new NotImplementedException();
+        }
+
         public ProjectUser ReadProjectUser(int id)
         {
             ProjectUser projectUser = _dbContext.ProjectUser.Find(id);

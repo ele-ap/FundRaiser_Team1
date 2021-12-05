@@ -12,5 +12,6 @@ namespace FundRaiser_Team1.Interfaces
         public void CreateProjectUser(ProjectUser projectUser);
         public ProjectUser ReadProjectUser(int id);
         public List<ProjectUser> ReadProjectUser();
+        public bool DeleteProjectUser(int projectUserId);
     }
 }
