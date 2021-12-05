@@ -2,7 +2,7 @@
 
 namespace FundRaiser_Team1.Migrations
 {
-    public partial class trfy : Migration
+    public partial class Projects : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

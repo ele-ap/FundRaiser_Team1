@@ -1,4 +1,5 @@
-﻿using FundRaiser_Team1.Models;
+﻿using FundRaiser_Team1.Interfaces;
+using FundRaiser_Team1.Models;
 using FundRaiser_Team1.Services;
 using FundRaiser_Team1_Mvc.Models;
 using Microsoft.AspNetCore.Http;
@@ -17,11 +18,13 @@ namespace FundRaiser_Team1_MVC.Controllers
     {
         private readonly IProjectService _projectService;
         private readonly IHostEnvironment _hostEnvironment;
+     
 
         public ProjectController(IProjectService projectService, IHostEnvironment hostEnvironment)
         {
             _projectService = projectService;
             _hostEnvironment = hostEnvironment;
+            
         }
 
         // GET: ProjectController
@@ -59,7 +62,10 @@ namespace FundRaiser_Team1_MVC.Controllers
             }
 
             _projectService.CreateProject(project);
-         
+            int UserId = int.Parse(Request.Cookies["userId"]);
+            ProjectUser projectUser = new ProjectUser(UserId , project.Id , Category.CREATOR);
+           _projectService.CreateProjectUser(projectUser);
+             
 
             return RedirectToAction(nameof(Index));
         }
