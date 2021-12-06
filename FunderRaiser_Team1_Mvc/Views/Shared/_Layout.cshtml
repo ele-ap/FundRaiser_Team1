@@ -25,6 +25,9 @@
                             <a class="nav-link text-dark" id="SignInBtn" asp-area="" asp-controller="Home" asp-action="SignIn">Sign In</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" id="Funding" asp-area="" asp-controller="Home" asp-action="BackerFunded">Funding</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" id="LogOutBtn" asp-area="" asp-controller="Home" asp-action="LogOut">Log Out</a>
                         </li>
                         <li class="nav-item">
@@ -41,41 +44,46 @@
         </main>
     </div>
 
-
-
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - FunderRaiser_Team1_Mvc
+            Copyright &copy; <script>document.write(new Date().getFullYear())</script> - FunderRaiser_Team1_Mvc
         </div>
     </footer>
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    
     <script>
-        function getCook(cookiename)
-        {
-        let cookiestring=RegExp(cookiename+"=[^;]+").exec(document.cookie);
+        /* grab user cookie */
+        function getCook(cookiename) {
+            let cookiestring=RegExp(cookiename+"=[^;]+").exec(document.cookie)
 
-        return decodeURIComponent(!!cookiestring ? cookiestring.toString().replace(/^[^=]+./,"") : "");
+            return decodeURIComponent(!!cookiestring ? cookiestring.toString().replace(/^[^=]+./,"") : "")
         }
-        let cookieValue = getCook('userId');
-        console.log(cookieValue)
+       
+        let cookieValue = getCook('userId')
 
-
-
+        /* grab buttons */
         let SignInBtn = document.getElementById("SignInBtn")
         let CreateUserBtn = document.getElementById("CreateUserBtn")
         let LogOutBtn = document.getElementById("LogOutBtn")
-        let checkUserId = (cookieValue) =>{
-        if (cookieValue != ""){
-        SignInBtn.classList.add("d-none")
-        CreateUserBtn.classList.add("d-none")
+        let FundingBtn = document.getElementById("Funding")
+        
+        /* display buttons based on login status */
+        let checkUserId = (cookieValue) => {
+        if (cookieValue != "") {
+            SignInBtn.classList.add("d-none")
+            CreateUserBtn.classList.add("d-none")
+        }
+        else 
+            LogOutBtn.classList.add("d-none")
+            FundingBtn.classList.add("d-none")
+        }
 
-        }
-        else LogOutBtn.classList.add("d-none")
-        }
         checkUserId(cookieValue);
     </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

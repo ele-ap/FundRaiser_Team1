@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Funding";
+}
+
+<!-- Table will be populated with projects from database. Hardcoded for now -->
+
+<style>
+    .spacer {
+        width: 100vw;
+        height: 50px;
+    }
+</style>
+
+<div class="spacer"></div>
+<h1>@ViewData["Title"]</h1>
+<div class="spacer"></div>
+
+<table class="table table-hover table-stripped">
+  <caption>List of project you have Funded so far.</caption>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Projects Backed</th>
+      <th scope="col">Paid (€)</th>
+      <th scope="col">Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Project 1</td>
+      <td>10</td>
+      <td><a href="#">View Project Page</a></td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Project 2</td>
+      <td>50</td>
+      <td><a href="#">View Project Page</a></td>
+    </tr>
+  </tbody>
+</table>
