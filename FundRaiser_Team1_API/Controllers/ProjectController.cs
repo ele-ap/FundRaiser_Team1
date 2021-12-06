@@ -40,5 +40,13 @@ namespace FundRaiser_Team1_API.Controllers
         {
             return await _projectService.DeleteProject(id);
         }
+
+        [HttpGet, Route("creator/{id}")]
+        public ActionResult<ProjectDto> GetCreator(int id)
+        {
+            var dto =  _projectService.GetCreator(id);
+            if (dto == null) return NotFound("Invalid id.");
+            return Ok(dto);
+        }
     }
 }

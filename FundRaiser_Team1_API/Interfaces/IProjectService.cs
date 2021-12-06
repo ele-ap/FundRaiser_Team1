@@ -10,9 +10,8 @@ namespace FundRaiser_Team1_API.Interfaces
     {
         public Task<ProjectDto> GetProject(int id);
         public Task<List<ProjectDto>> GetAllProjects();
-        public Task<ProjectDto> CreateProject(ProjectDto project);
         public Task<bool> DeleteProject(int id);
         public List<UserDto> GetFunders();
-        public UserDto GetCreator();
+        public UserDto GetCreator(int projectId);
     }
 }

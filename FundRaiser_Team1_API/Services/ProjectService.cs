@@ -16,10 +16,6 @@ namespace FundRaiser_Team1_API.Services
         {
             _db = db;
         }
-        public Task<ProjectDto> CreateProject(ProjectDto project)
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task<List<ProjectDto>> GetAllProjects()
         {
@@ -34,9 +30,26 @@ namespace FundRaiser_Team1_API.Services
                 .ToListAsync();
         }
 
-        public UserDto GetCreator()
+        public UserDto GetCreator(int projectId)
         {
-            throw new NotImplementedException();
+            var user = _db.Set<ProjectUser>()
+                .Where(p => p.ProjectId == projectId && p.Category == 0)
+                .SingleOrDefault();
+
+            var my_user = ReadUser(user.UserId);
+
+            return new UserDto
+            {
+                FirstName = my_user.FirstName,
+                Id = my_user.Id,
+                LastName = my_user.LastName,
+            };
+        }
+
+        public User ReadUser(int id)
+        {
+            User user = _db.User.Find(id);
+            return user;
         }
 
         public List<UserDto> GetFunders()
