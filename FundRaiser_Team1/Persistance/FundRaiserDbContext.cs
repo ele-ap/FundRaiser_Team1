@@ -8,6 +8,11 @@ namespace FundRaiser_Team1.Models
         public DbSet<User> User { get; set; }
         public DbSet<Package> Package { get; set; }
 
+        public FundRaiserDbContext(DbContextOptions<FundRaiserDbContext> options) : base()
+        {
+
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
              optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=FundRaiserDB;User= sa; password= admin!@#123");
