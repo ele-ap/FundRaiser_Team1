@@ -4,12 +4,9 @@
 @{
 }
 
-@using FundRaiser_Team1.Models
-@model FundRaiser_Team1.Models.Project
-
 <h1>Create your Package</h1>
 
-<form asp-action="CreatePackage" enctype="multipart/form-data">
+<form asp-action="Create">
     <div class="form-group">
         <label for="Packages">Packages:</label>
         <div class="d-flex justify-content-center">
@@ -22,7 +19,7 @@
     </div>
     <div class="form-group">
         <label for="Price">Price:</label>
-        <input type="number" step="0.01" name="PackagePrice" placeholder="0.00">
+        <input type="number" step="0.01" name="PackagePrice" placeholder="0.00" min = "0">
     </div>
     <input type="hidden" id="projectId" name="ProjectId" value="first value">
     <button type="submit" class="btn btn-primary">Create Package</button>
@@ -31,5 +28,5 @@
    let link = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
 
    let projectId = document.getElementById('projectId')
-   projectId.value = link
+   projectId.value = parseInt(link)
 </script>

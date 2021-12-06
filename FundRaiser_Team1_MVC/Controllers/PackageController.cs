@@ -27,7 +27,7 @@ namespace FundRaiser_Team1_Mvc.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreatePackage(Package package)
+        public IActionResult Create(Package package)
         {
             _packageService.CreatePackage(package);
 
