@@ -33,7 +33,7 @@ namespace FundRaiser_Team1_API.Services
         public UserDto GetCreator(int projectId)
         {
             var user = _db.Set<ProjectUser>()
-                .Where(p => p.ProjectId == projectId && p.Category == 0)
+                .Where(p => p.ProjectId == projectId && p.Category == Category.CREATOR)
                 .SingleOrDefault();
 
             var my_user = ReadUser(user.UserId);
@@ -46,15 +46,31 @@ namespace FundRaiser_Team1_API.Services
             };
         }
 
+        public List<UserDto> GetFunders(int projectId)
+        {
+            var usr_dto = new List<UserDto>();
+            var user = _db.Set<ProjectUser>()
+                .Where(p => p.ProjectId == projectId && p.Category == Category.BACKER)
+                .ToList();
+
+            foreach (var usr in user)
+            {
+                var my_user = ReadUser(usr.UserId);
+
+                usr_dto.Add(
+                    new UserDto { 
+                         FirstName = my_user.FirstName,
+                         LastName = my_user.LastName
+                    });
+            }
+
+            return usr_dto;
+        }
+
         public User ReadUser(int id)
         {
             User user = _db.User.Find(id);
             return user;
-        }
-
-        public List<UserDto> GetFunders()
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<ProjectDto> GetProject(int id)

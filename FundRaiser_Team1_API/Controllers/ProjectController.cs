@@ -48,5 +48,13 @@ namespace FundRaiser_Team1_API.Controllers
             if (dto == null) return NotFound("Invalid id.");
             return Ok(dto);
         }
+
+        [HttpGet, Route("funders/{id}")]
+        public ActionResult<ProjectDto> GetFunders(int id)
+        {
+            var dto = _projectService.GetFunders(id);
+            if (dto == null) return NotFound("Invalid id.");
+            return Ok(dto);
+        }
     }
 }
