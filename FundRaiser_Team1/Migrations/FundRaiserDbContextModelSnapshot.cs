@@ -71,16 +71,23 @@ namespace FundRaiser_Team1.Migrations
 
             modelBuilder.Entity("FundRaiser_Team1.Models.ProjectUser", b =>
                 {
+                    b.Property<int>("ProjectUserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoryProject")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Category")
-                        .HasColumnType("int");
+                    b.HasKey("ProjectUserId");
 
-                    b.HasKey("ProjectId", "UserId");
+                    b.HasIndex("ProjectId");
 
                     b.HasIndex("UserId");
 

@@ -65,13 +65,15 @@ namespace FundRaiser_Team1.Migrations
                 name: "ProjectUser",
                 columns: table => new
                 {
+                    ProjectUserId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ProjectId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    Category = table.Column<int>(type: "int", nullable: false)
+                    CategoryProject = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProjectUser", x => new { x.ProjectId, x.UserId });
+                    table.PrimaryKey("PK_ProjectUser", x => x.ProjectUserId);
                     table.ForeignKey(
                         name: "FK_ProjectUser_Projects_ProjectId",
                         column: x => x.ProjectId,
@@ -89,6 +91,11 @@ namespace FundRaiser_Team1.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Package_ProjectId",
                 table: "Package",
+                column: "ProjectId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProjectUser_ProjectId",
+                table: "ProjectUser",
                 column: "ProjectId");
 
             migrationBuilder.CreateIndex(
