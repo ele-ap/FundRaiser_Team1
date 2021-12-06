@@ -57,5 +57,14 @@ namespace FundRaiser_Team1_API.Services
                 StatusPost = project.StatusPost,
             };
         }
+
+        public async Task<bool> DeleteProject(int id)
+        {
+            Project project = await _db.Projects
+                .SingleOrDefaultAsync(p => p.Id == id);
+            _db.Remove(project);
+            await _db.SaveChangesAsync();
+            return true;
+        }
     }
 }
