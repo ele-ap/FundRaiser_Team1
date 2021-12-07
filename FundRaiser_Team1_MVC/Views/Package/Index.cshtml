@@ -3,4 +3,15 @@
 *@
 @{
 }
-<p>Your package was created!</p>
+<h1>Your package was created!</h1>
+ <button onclick="GoBackWithRefresh();return false;"  class="btn btn-primary" > Create new package in your project</button>
+
+ <script>
+ function GoBackWithRefresh(event) {
+    if ('referrer' in document) {
+        window.location = document.referrer;
+    } else {
+        window.history.back();
+    }
+}
+</script>
