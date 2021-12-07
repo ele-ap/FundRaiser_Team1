@@ -36,12 +36,11 @@ namespace FundRaiser_Team1_API.Services
                 .Where(p => p.ProjectId == projectId && p.Category == Category.CREATOR)
                 .SingleOrDefault();
 
-            var my_user = ReadUser(user.UserId);
+            var my_user = _db.User.Find(user.UserId);
 
             return new UserDto
             {
                 FirstName = my_user.FirstName,
-                Id = my_user.Id,
                 LastName = my_user.LastName,
             };
         }
@@ -55,7 +54,7 @@ namespace FundRaiser_Team1_API.Services
 
             foreach (var usr in user)
             {
-                var my_user = ReadUser(usr.UserId);
+                var my_user = _db.User.Find(usr.UserId);
 
                 usr_dto.Add(
                     new UserDto { 
@@ -67,23 +66,30 @@ namespace FundRaiser_Team1_API.Services
             return usr_dto;
         }
 
-        public User ReadUser(int id)
-        {
-            User user = _db.User.Find(id);
-            return user;
-        }
+        
 
         public async Task<ProjectDto> GetProject(int id)
         {
-            var project = await _db.Projects.Include(b=>b.Users).SingleOrDefaultAsync(b => b.Id == id);
+            var award_packages = new List<PackageDto>();
+            var project = await _db.Projects.Include(b=>b.AwardPackages).SingleOrDefaultAsync(b => b.Id == id);
                 
             if (project is null) return null;
+
+            foreach(var package in project.AwardPackages)
+            {
+                award_packages.Add(new PackageDto {
+                     PackageName = package.PackageName,
+                     Description = package.Description,
+                     PackagePrice = package.PackagePrice
+                });
+            }
 
             return new ProjectDto() {
                 Id = project.Id,
                 Title = project.Title,
                 Description = project.Description,
                 StatusPost = project.StatusPost,
+                AwardPackages = award_packages
             };
         }
 
