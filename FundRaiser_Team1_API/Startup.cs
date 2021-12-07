@@ -42,6 +42,7 @@ namespace FundRaiser_Team1_API
 
             services.AddDbContext<FundRaiserDbContext>();
             services.AddScoped<IProjectService, ProjectService>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
