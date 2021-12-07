@@ -1,6 +1,7 @@
 ﻿using FundRaiser_Team1.Models;
 using FundRaiser_Team1_API.DTO;
 using FundRaiser_Team1_API.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,15 @@ namespace FundRaiser_Team1_API.Services
             };
 
             return dto;
+        }
+        public async Task<bool> DeletePackage(int id)
+        {
+            Package package = await _db.Package
+                .SingleOrDefaultAsync(p => p.Id == id);
+            if (package == null) return false;
+            _db.Remove(package);
+            await _db.SaveChangesAsync();
+            return true;
         }
     }
 }

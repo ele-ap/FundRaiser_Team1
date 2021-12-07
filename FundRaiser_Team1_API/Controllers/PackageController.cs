@@ -13,19 +13,27 @@ namespace FundRaiser_Team1_API.Controllers
     [ApiController]
     public class PackageController : ControllerBase
     {
-        private readonly IPackageService _userService;
+        private readonly IPackageService _packageService;
 
-        public PackageController(IPackageService userService)
+        public PackageController(IPackageService packageService)
         {
-            _userService = userService;
+            _packageService = packageService;
         }
 
         [HttpGet, Route("{id}")]
-        public async Task<ActionResult<PackageDto>> GetUserById(int id)
+        public async Task<ActionResult<PackageDto>> GetPackageById(int id)
         {
-            var dto = await _userService.GetPackageById(id);
+            var dto = await _packageService.GetPackageById(id);
             if (dto == null) return NotFound("Cannot find package with this id.");
             return Ok(dto);
+        }
+
+        [HttpDelete, Route("delete/{id}")]
+        public async Task<ActionResult<bool>> DeletePackage(int id)
+        {
+            var deleted = await _packageService.DeletePackage(id);
+            if (!deleted) return NotFound("The project you are trying to delete does not exist.");
+            return Ok(deleted);
         }
     }
 }

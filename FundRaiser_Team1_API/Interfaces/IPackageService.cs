@@ -9,5 +9,6 @@ namespace FundRaiser_Team1_API.Interfaces
     public interface IPackageService
     {
         public Task<PackageDto> GetPackageById(int id);
+        public Task<bool> DeletePackage(int id);
     }
 }
