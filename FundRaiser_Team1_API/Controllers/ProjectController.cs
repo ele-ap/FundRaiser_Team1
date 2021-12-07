@@ -22,9 +22,11 @@ namespace FundRaiser_Team1_API.Controllers
         }
 
         [HttpGet]
-        public async Task<List<ProjectDto>> GetAllProjects()
+        public async Task<ActionResult<List<ProjectDto>>> GetAllProjects()
         {
-            return await _projectService.GetAllProjects();
+            var dto_list = await _projectService.GetAllProjects();
+            if (dto_list == null) return NotFound("No Project Available");
+            return Ok(dto_list);
         }
 
         [HttpGet, Route("{id}")]
@@ -38,7 +40,9 @@ namespace FundRaiser_Team1_API.Controllers
         [HttpDelete, Route("{id}")]
         public async Task<ActionResult<bool>> DeleteProject(int id)
         {
-            return await _projectService.DeleteProject(id);
+            var deleted = await _projectService.DeleteProject(id);
+            if (!deleted) return NotFound("The project you are trying to delete does not exist.") ;
+            return Ok(deleted);
         }
 
         [HttpGet, Route("creator/{id}")]
