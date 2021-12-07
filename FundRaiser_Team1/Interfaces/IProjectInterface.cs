@@ -20,5 +20,6 @@ namespace FundRaiser_Team1.Services
         public List<User> GetBackers(int projectId);
         public User GetCreator(int projectId);
         void CreateProjectUser(ProjectUser projectUser);
+        public void CreatePackageUser(PackageUser packageUser);
     }
 }

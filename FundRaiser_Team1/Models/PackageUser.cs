@@ -13,5 +13,10 @@ namespace FundRaiser_Team1.Models
         public int PackageUserId { get; set; }
         public int UserId { get; set; }
         public int PackageId { get; set; }
+        public PackageUser(int userId,int packageId)
+        {   
+            UserId = userId;
+            PackageId = packageId;
+        }
     }
 }

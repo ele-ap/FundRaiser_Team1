@@ -59,8 +59,27 @@ namespace FundRaiser_Team1_MVC.Controllers
         [HttpPost]
         public ActionResult Buy(int packageId)
         {
-           // ProjectUser projectUser = new ProjectUser(UserId, project.Id, Category.CREATOR);
-            //_projectService.CreateProjectUser(projectUser);
+            int UserId = int.Parse(Request.Cookies["userId"]);
+            try
+            {
+                using (FundRaiserDbContext db = new FundRaiserDbContext())
+                {
+                    Package pa = (from pack in db.Package
+                                      where pack.Id == packageId
+                                      select pack).SingleOrDefault();
+                    if (pa != null)
+                    {
+                        ProjectUser projectUser = new ProjectUser(UserId, pa.ProjectId, Category.BACKER);
+                        _projectService.CreateProjectUser(projectUser);
+                        PackageUser packageUser = new PackageUser(UserId, packageId);
+                        _projectService.CreatePackageUser(packageUser);
+                    }
+                }
+            }
+            catch
+            {
+                throw;
+            }
             return View();
         }
 

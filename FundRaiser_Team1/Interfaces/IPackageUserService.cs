@@ -12,6 +12,6 @@ namespace FundRaiser_Team1.Interfaces
         public void CreatePackageUser(PackageUser packageUser);
         public PackageUser ReadPackageUser(int id);
         public List <PackageUser> ReadPackageUser();
-        public bool DeletePackageUser(int projectUserId);
+
     }
 }
