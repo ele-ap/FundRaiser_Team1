@@ -7,7 +7,15 @@
     <div class="card" style="width: 18rem; display:inline-block;">
         <div class="card-body">
             <h5 class="card-title">@package.PackageName</h5>
-            <p class="card-text"></p>
+            <p class="card-text">@package.Description </p>
+            <p class="card-text">@package.PackagePrice euro</p>
+            <form asp-action="Buy">
+             <div class="form-group">
+                <label for="projectId"></label>
+                <input type="hidden" value="@package.Id" name="projectId">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%"> Buy </button>
+            </form>
         </div>
     </div>
 }

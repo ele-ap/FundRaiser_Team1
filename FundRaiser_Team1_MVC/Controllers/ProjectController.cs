@@ -51,9 +51,10 @@ namespace FundRaiser_Team1_MVC.Controllers
             return View(project);
            
         }
-        public IActionResult GoFunding()
+        public ActionResult GoFunding()
         {
             return View();
+
         }
 
         [HttpPost]
