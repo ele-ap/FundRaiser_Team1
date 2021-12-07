@@ -45,6 +45,23 @@ namespace FundRaiser_Team1_MVC.Controllers
         {
             return View();
         }
+        public ActionResult Funding()
+        {
+            var project = _projectService.GetAllProjects();
+            return View(project);
+           
+        }
+        public IActionResult GoFunding()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult GoFunding(int projectId)
+        {
+            var package = _projectService.GetAllPackages(projectId);
+            return View(package);
+        }
 
         [HttpPost]
         public ActionResult CreateProject(ProjectWithImage projectWithImage)

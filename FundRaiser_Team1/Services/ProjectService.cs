@@ -105,5 +105,14 @@ namespace FundRaiser_Team1.Services
 
             return _dbContext.SaveChanges() == 1;
         }
+
+        public List<Package> GetAllPackages(int projectId)
+        {
+            List<Package> packages = (from package in _dbContext.Package
+                                   where package.ProjectId == projectId
+                                   select package).ToList();
+
+            return packages;
+        }
     }
 }

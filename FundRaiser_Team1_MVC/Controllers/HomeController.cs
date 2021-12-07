@@ -23,6 +23,11 @@ namespace FunderRaiser_Team1_Mvc.Controllers
         {
             return View();
         }
+        public IActionResult WelcomePage()
+        {
+            return View();
+        }
+
 
         public IActionResult SignIn()
         {
@@ -84,7 +89,7 @@ namespace FunderRaiser_Team1_Mvc.Controllers
                             }
                             if (((u.Category).ToString()).Equals("BOTH"))
                             {*/
-                                return RedirectToAction(nameof(Index));
+                                return RedirectToAction(nameof(WelcomePage));
                             //}
 
                         }

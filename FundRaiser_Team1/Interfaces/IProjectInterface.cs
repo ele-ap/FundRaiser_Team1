@@ -12,6 +12,7 @@ namespace FundRaiser_Team1.Services
         public Project CreateProject(Project project);
         public Project GetProject(int projectId);
         public List<Project> GetAllProjects();
+        public List<Package> GetAllPackages(int projectId);
         public Project UpdateProject(int projectId, Project project);
         public bool DeleteProject(int projectId);
         public bool DeleteProjectUser(int projectUserId);
