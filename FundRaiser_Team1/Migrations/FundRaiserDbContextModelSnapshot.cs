@@ -44,6 +44,28 @@ namespace FundRaiser_Team1.Migrations
                     b.ToTable("Package");
                 });
 
+            modelBuilder.Entity("FundRaiser_Team1.Models.PackageUser", b =>
+                {
+                    b.Property<int>("PackageUserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("PackageId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PackageUserId");
+
+                    b.HasIndex("PackageId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PackageUser");
+                });
+
             modelBuilder.Entity("FundRaiser_Team1.Models.Project", b =>
                 {
                     b.Property<int>("Id")
@@ -135,6 +157,21 @@ namespace FundRaiser_Team1.Migrations
                     b.HasOne("FundRaiser_Team1.Models.Project", null)
                         .WithMany("AwardPackages")
                         .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FundRaiser_Team1.Models.PackageUser", b =>
+                {
+                    b.HasOne("FundRaiser_Team1.Models.Package", null)
+                        .WithMany()
+                        .HasForeignKey("PackageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FundRaiser_Team1.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -21,7 +21,8 @@ namespace FundRaiser_Team1.Models
         public string Password { get; set; }
         [Required]
         public Category Category { get; set; }
-        public List<Project> Projects { get; set; } 
+        public List<Project> Projects { get; set; }
+        public List<Package> Packages { get; set; }
 
     }
 }

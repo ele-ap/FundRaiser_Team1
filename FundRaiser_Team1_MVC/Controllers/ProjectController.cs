@@ -56,6 +56,13 @@ namespace FundRaiser_Team1_MVC.Controllers
             return View();
 
         }
+        [HttpPost]
+        public ActionResult Buy(int packageId)
+        {
+           // ProjectUser projectUser = new ProjectUser(UserId, project.Id, Category.CREATOR);
+            //_projectService.CreateProjectUser(projectUser);
+            return View();
+        }
 
         [HttpPost]
         public ActionResult GoFunding(int projectId)

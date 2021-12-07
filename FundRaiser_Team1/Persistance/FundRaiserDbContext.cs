@@ -8,6 +8,7 @@ namespace FundRaiser_Team1.Models
         public DbSet<User> User { get; set; }
         public DbSet<Package> Package { get; set; }
         public DbSet<ProjectUser> ProjectUser { get; set; }
+        public DbSet<PackageUser> PackageUser { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,10 +29,20 @@ namespace FundRaiser_Team1.Models
             )
             .Property(ap => ap.CategoryProject);
 
+            modelBuilder.Entity<User>()
+             .HasMany(a => a.Packages)
+             .WithMany(p => p.Users)
+             .UsingEntity<PackageUser>(
+             ap => ap.HasOne<Package>().WithMany(),
+             ap => ap.HasOne<User>().WithMany()
+             );
+
+
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<User>().ToTable("User");
             modelBuilder.Entity<Package>().ToTable("Package");
-           
+            modelBuilder.Entity<PackageUser>().ToTable("PackageUser");
+
             modelBuilder.Entity<User>()
                 .HasIndex(user => user.Email)
                 .IsUnique();
