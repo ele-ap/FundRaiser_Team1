@@ -19,15 +19,34 @@ namespace FundRaiser_Team1_API.Services
 
         public async Task<List<ProjectDto>> GetAllProjects()
         {
-            return await _db.Projects
-                .Select(p => new ProjectDto()
+            var projects = new List<Project>();
+            var dto_list = new List<ProjectDto>();
+            projects = await _db.Projects.Include(p => p.AwardPackages)               
+                                         .ToListAsync();
+            foreach(var p in projects)
+            {
+                var pckg_list = new List<PackageDto>();
+
+                foreach (var pckg in p.AwardPackages)
+                {
+                    pckg_list.Add(new PackageDto() { 
+                         PackageName = pckg.PackageName,
+                         Description = pckg.Description,
+                         PackagePrice = pckg.PackagePrice
+                    });
+                }
+
+                dto_list.Add(new ProjectDto()
                 {
                     Id = p.Id,
                     Title = p.Title,
                     Description = p.Description,
-                    StatusPost = p.StatusPost
-                })
-                .ToListAsync();
+                    StatusPost = p.StatusPost,
+                    AwardPackages = pckg_list
+                });              
+            }
+
+            return dto_list;
         }
 
         public UserDto GetCreator(int projectId)
@@ -66,8 +85,6 @@ namespace FundRaiser_Team1_API.Services
             return usr_dto;
         }
 
-        
-
         public async Task<ProjectDto> GetProject(int id)
         {
             var award_packages = new List<PackageDto>();
@@ -97,6 +114,7 @@ namespace FundRaiser_Team1_API.Services
         {
             Project project = await _db.Projects
                 .SingleOrDefaultAsync(p => p.Id == id);
+            if (project == null) return false;
             _db.Remove(project);
             await _db.SaveChangesAsync();
             return true;
