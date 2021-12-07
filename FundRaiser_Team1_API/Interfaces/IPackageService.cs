@@ -10,5 +10,6 @@ namespace FundRaiser_Team1_API.Interfaces
     {
         public Task<PackageDto> GetPackageById(int id);
         public Task<bool> DeletePackage(int id);
+        public Task<PackageDto> UpdatePackage(int packageId, PackageDto dto);
     }
 }

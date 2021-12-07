@@ -32,8 +32,16 @@ namespace FundRaiser_Team1_API.Controllers
         public async Task<ActionResult<bool>> DeletePackage(int id)
         {
             var deleted = await _packageService.DeletePackage(id);
-            if (!deleted) return NotFound("The project you are trying to delete does not exist.");
+            if (!deleted) return NotFound("The package you are trying to delete does not exist.");
             return Ok(deleted);
+        }
+
+        [HttpPatch, Route("{id}")]
+        public async Task<ActionResult<PackageDto>> UpdatePackage([FromRoute] int id, [FromBody] PackageDto dto)
+        {
+            var response = await _packageService.UpdatePackage(id, dto);
+            if (response == null) return NotFound("The package you are trying to update does not exist.");
+            return Ok(response);
         }
     }
 }

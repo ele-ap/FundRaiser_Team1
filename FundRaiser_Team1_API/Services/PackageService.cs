@@ -37,5 +37,27 @@ namespace FundRaiser_Team1_API.Services
             await _db.SaveChangesAsync();
             return true;
         }
+
+        public async Task<PackageDto> UpdatePackage(int packageId, PackageDto dto)
+        {
+            Package package = await _db.Package
+                                       .SingleOrDefaultAsync(p => p.Id == packageId);
+
+            if (package is null) return null;
+
+            if (dto.PackageName is not null) package.PackageName = dto.PackageName;
+            if (dto.Description is not null) package.Description = dto.Description;
+            if (dto.PackagePrice != 0) package.PackagePrice = dto.PackagePrice;
+
+            await _db.SaveChangesAsync();
+
+            PackageDto new_dto = new() {
+                PackageName = package.PackageName,
+                Description = package.Description,
+                PackagePrice = package.PackagePrice
+            };
+
+            return new_dto;
+        }
     }
 }
