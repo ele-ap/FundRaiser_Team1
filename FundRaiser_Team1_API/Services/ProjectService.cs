@@ -52,7 +52,7 @@ namespace FundRaiser_Team1_API.Services
         public UserDto GetCreator(int projectId)
         {
             var user = _db.Set<ProjectUser>()
-                .Where(p => p.ProjectId == projectId && p.Category == Category.CREATOR)
+                .Where(p => p.ProjectId == projectId && p.CategoryProject == Category.CREATOR)
                 .SingleOrDefault();
 
             var my_user = _db.User.Find(user.UserId);
@@ -68,7 +68,7 @@ namespace FundRaiser_Team1_API.Services
         {
             var usr_dto = new List<UserDto>();
             var user = _db.Set<ProjectUser>()
-                .Where(p => p.ProjectId == projectId && p.Category == Category.BACKER)
+                .Where(p => p.ProjectId == projectId && p.CategoryProject == Category.BACKER)
                 .ToList();
 
             foreach (var usr in user)

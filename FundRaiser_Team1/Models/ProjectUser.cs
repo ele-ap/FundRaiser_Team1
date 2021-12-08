@@ -13,7 +13,7 @@ namespace FundRaiser_Team1.Models
         public int ProjectUserId { get; set; }
         public int ProjectId { get; set; }
         public int UserId { get; set; }
-        public Category CategoryProject { get; set; }
+        public Category CategoryProject{ get; set; }
 
         public ProjectUser(int UserId, int ProjectId, Category categoryProject)
         {
