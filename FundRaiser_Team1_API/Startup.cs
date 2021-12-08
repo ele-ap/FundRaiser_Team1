@@ -33,8 +33,8 @@ namespace FundRaiser_Team1_API
 
             services.AddControllers();
             //services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
-            services.AddDbContext<FundRaiserDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("FundRaiserDB")));
+            //services.AddDbContext<FundRaiserDbContext>(options =>
+            //options.UseSqlServer(Configuration.GetConnectionString("FundRaiserDB")));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FundRaiser_Team1_API", Version = "v1" });
