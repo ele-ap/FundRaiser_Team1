@@ -23,6 +23,11 @@ namespace FunderRaiser_Team1_Mvc.Controllers
         {
             return View();
         }
+        public IActionResult WelcomePage()
+        {
+            return View();
+        }
+
 
         public IActionResult SignIn()
         {
@@ -39,6 +44,10 @@ namespace FunderRaiser_Team1_Mvc.Controllers
             if (Request.Cookies["userId"] != null)
             {
                 Response.Cookies.Delete("userId");
+            }
+            if (Request.Cookies["userCategory"] != null)
+            {
+                Response.Cookies.Delete("userCategory");
             }
             return RedirectToAction(nameof(SignIn));
         }
@@ -60,20 +69,21 @@ namespace FunderRaiser_Team1_Mvc.Controllers
 
                         if (password.Equals(u.Password))
                         {
-                            HttpContext.Response.Cookies.Append("userId", u.Id.ToString());
+                            HttpContext.Response.Cookies.Append("userId",
+                                u.Id.ToString(),
+                                new Microsoft.AspNetCore.Http.CookieOptions
+                                {
+                                    Expires = DateTimeOffset.Now.AddMinutes(40)
+                                });
 
-                            if (((u.Category).ToString()).Equals("CREATOR"))
-                            {
-                                return RedirectToAction(nameof(Index));
-                            }
-                            if (((u.Category).ToString()).Equals("BACKER"))
-                            {
-                                return RedirectToAction(nameof(Index));
-                            }
-                            if (((u.Category).ToString()).Equals("BOTH"))
-                            {
-                                return RedirectToAction(nameof(Index));
-                            }
+                            HttpContext.Response.Cookies.Append("userCategory",
+                                u.Category.ToString(),
+                                new Microsoft.AspNetCore.Http.CookieOptions
+                                {
+                                    Expires = DateTimeOffset.Now.AddMinutes(40)
+                                });
+
+                                return RedirectToAction(nameof(WelcomePage));
 
                         }
                         return View();

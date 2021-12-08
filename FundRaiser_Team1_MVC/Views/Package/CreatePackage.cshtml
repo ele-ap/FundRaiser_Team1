@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>Create your Package</h1>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label for="Packages">Packages:</label>
+        <div class="d-flex justify-content-center">
+            <input type="text" class="form-control" name="PackageName" placeholder="Package Name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Description">Description:</label>
+        <textarea class="form-control" name="Description" rows="5"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="Price">Price:</label>
+        <input type="number" class="form-control"  name="PackagePrice" min = "0">
+    </div>
+    <div class="form-group">
+        <label for="ProjectId"></label>
+        <input type="hidden" id = "projectId" class="form-control" name="ProjectId">
+    </div>
+    <button type="submit" class="btn btn-primary" style="width:100%">Create Package</button>
+</form>
+<script>
+   let link = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
+
+   let projectId = document.getElementById('projectId')
+   projectId.value = parseInt(link)
+</script>

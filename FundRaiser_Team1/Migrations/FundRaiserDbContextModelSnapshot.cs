@@ -34,9 +34,34 @@ namespace FundRaiser_Team1.Migrations
                     b.Property<decimal>("PackagePrice")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Package");
+                });
+
+            modelBuilder.Entity("FundRaiser_Team1.Models.PackageUser", b =>
+                {
+                    b.Property<int>("PackageUserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("PackageId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PackageUserId");
+
+                    b.HasIndex("PackageId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PackageUser");
                 });
 
             modelBuilder.Entity("FundRaiser_Team1.Models.Project", b =>
@@ -65,16 +90,23 @@ namespace FundRaiser_Team1.Migrations
 
             modelBuilder.Entity("FundRaiser_Team1.Models.ProjectUser", b =>
                 {
+                    b.Property<int>("ProjectUserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoryProject")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Category")
-                        .HasColumnType("int");
+                    b.HasKey("ProjectUserId");
 
-                    b.HasKey("ProjectId", "UserId");
+                    b.HasIndex("ProjectId");
 
                     b.HasIndex("UserId");
 
@@ -120,17 +152,26 @@ namespace FundRaiser_Team1.Migrations
 
             modelBuilder.Entity("PackageProject", b =>
                 {
-                    b.Property<int>("AwardPackagesId")
-                        .HasColumnType("int");
+                    b.HasOne("FundRaiser_Team1.Models.Project", null)
+                        .WithMany("AwardPackages")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
-                    b.Property<int>("ProjectsId")
-                        .HasColumnType("int");
+            modelBuilder.Entity("FundRaiser_Team1.Models.PackageUser", b =>
+                {
+                    b.HasOne("FundRaiser_Team1.Models.Package", null)
+                        .WithMany()
+                        .HasForeignKey("PackageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasKey("AwardPackagesId", "ProjectsId");
-
-                    b.HasIndex("ProjectsId");
-
-                    b.ToTable("PackageProject");
+                    b.HasOne("FundRaiser_Team1.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("FundRaiser_Team1.Models.ProjectUser", b =>

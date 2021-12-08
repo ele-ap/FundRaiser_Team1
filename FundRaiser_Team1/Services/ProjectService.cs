@@ -1,4 +1,5 @@
-﻿using FundRaiser_Team1.Models;
+﻿using FundRaiser_Team1.Interfaces;
+using FundRaiser_Team1.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FundRaiser_Team1.Services
 {
-    public class ProjectService : IProjectService
+    public class ProjectService : IProjectService 
     {
         private readonly FundRaiserDbContext _dbContext;
 
@@ -75,6 +76,50 @@ namespace FundRaiser_Team1.Services
 
             _dbContext.SaveChanges();
             return projectDb;
+        }
+
+        public void CreateProjectUser(ProjectUser projectUser)
+        {
+            _dbContext.ProjectUser.Add(projectUser);
+            try { _dbContext.SaveChanges(); }
+            catch { }
+
+        }
+
+        public ProjectUser ReadProjectUser(int id)
+        {
+            ProjectUser projectUser = _dbContext.ProjectUser.Find(id);
+            return projectUser;
+        }
+
+        public List<ProjectUser> ReadProjectUser()
+        {
+            return _dbContext.ProjectUser.ToList();
+        }
+
+        public bool DeleteProjectUser(int projectUserId)
+        {
+            var projectDb = _dbContext.ProjectUser.Find(projectUserId);
+            if (projectDb is null) return false;
+            _dbContext.ProjectUser.Remove(projectDb);
+
+            return _dbContext.SaveChanges() == 1;
+        }
+
+        public List<Package> GetAllPackages(int projectId)
+        {
+            List<Package> packages = (from package in _dbContext.Package
+                                   where package.ProjectId == projectId
+                                   select package).ToList();
+
+            return packages;
+        }
+
+        public void CreatePackageUser(PackageUser packageUser)
+        {
+            _dbContext.PackageUser.Add(packageUser);
+            try { _dbContext.SaveChanges(); }
+            catch { }
         }
     }
 }
