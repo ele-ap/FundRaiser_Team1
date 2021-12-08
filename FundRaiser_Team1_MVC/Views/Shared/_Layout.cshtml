@@ -37,7 +37,10 @@
                             <a class="nav-link text-dark" id="NewProjectBtn" asp-area="" asp-controller="Project" asp-action="CreateProject">New Project</a>
                          </li>
                         <li class="nav-item">
-                        <a class="nav-link text-dark"  id="FundingIdBtn" asp-area="" asp-controller="Project" asp-action="Browse">Funding Project</a>
+                        <a class="nav-link text-dark"  id="BrowseIdBtn" asp-area="" asp-controller="Project" asp-action="Browse">Browse</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-dark"  id="FundingIdBtn" asp-area="" asp-controller="Home" asp-action="FundingPage">Funding</a>
                         </li>
                     </ul>
                 </div>
@@ -68,7 +71,7 @@
         let SignInBtn = document.getElementById("SignInBtn")
         let CreateUserBtn = document.getElementById("CreateUserBtn")
         let LogOutBtn = document.getElementById("LogOutBtn")
-        let FundingIdBtn = document.getElementById("FundingIdBtn")
+        let BrowseIdBtn = document.getElementById("BrowseIdBtn")
         let NewProjectBtn = document.getElementById("NewProjectBtn")
 
         let checkUserId = (cookieValue) =>{
@@ -79,7 +82,7 @@
         else 
         {
             LogOutBtn.classList.add("d-none")
-            FundingIdBtn.classList.add("d-none")
+            BrowseIdBtn.classList.add("d-none")
             NewProjectBtn.classList.add("d-none")
         }
         }

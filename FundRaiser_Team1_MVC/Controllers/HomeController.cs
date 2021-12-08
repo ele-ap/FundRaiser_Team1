@@ -52,6 +52,11 @@ namespace FunderRaiser_Team1_Mvc.Controllers
             return RedirectToAction(nameof(SignIn));
         }
 
+        public IActionResult FundingPage()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult SignIn(String email, string password)
         {
