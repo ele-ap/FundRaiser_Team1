@@ -19,14 +19,19 @@
     </tr>
   </thead>
   <tbody>
-   @foreach (var project in Model)
-{
-    <tr>
-      <th scope="row">1</th>
-      <td>@project.project.Title</td>
-      <td>@project.FundersCount</td>
-      <td>@project.Money</td>
-    </tr>
-}
+        @{
+            var i = 0;
+        }
+        @foreach (var project in Model)
+        {    
+ 
+            i++;
+            <tr>
+              <th scope="row">@i</th>
+              <td>@project.project.Title</td>
+              <td>@project.FundersCount</td>
+              <td>@project.Money</td>
+            </tr>
+         }
   </tbody>
 </table>
