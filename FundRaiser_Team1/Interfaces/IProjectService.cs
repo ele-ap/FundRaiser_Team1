@@ -21,5 +21,8 @@ namespace FundRaiser_Team1.Services
         public User GetCreator(int projectId);
         void CreateProjectUser(ProjectUser projectUser);
         public void CreatePackageUser(PackageUser packageUser);
+        public int GetFunders(int projectId);
+        public decimal GetMoney(int projectId);
+
     }
 }

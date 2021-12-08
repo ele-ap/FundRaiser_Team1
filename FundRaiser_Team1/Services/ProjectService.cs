@@ -121,5 +121,47 @@ namespace FundRaiser_Team1.Services
             try { _dbContext.SaveChanges(); }
             catch { }
         }
+        public int GetFunders(int projectId)
+        {
+            var usrList = new List<User>();
+            var user = _dbContext.Set<ProjectUser>()
+                .Where(p => p.ProjectId == projectId && p.CategoryProject == Category.BACKER)
+                .ToList();
+
+            foreach (var usr in user)
+            {
+                var my_user = _dbContext.User.Find(usr.UserId);
+
+                usrList.Add(my_user);
+            }
+
+            return usrList.Count;
+        }
+
+        public decimal GetMoney(int projectId)
+        {
+            decimal sum = 0;
+            try
+            {
+                using (FundRaiserDbContext db = new FundRaiserDbContext())
+                {
+                    List <Package> pa = (from pack in db.Package
+                                  where pack.ProjectId == projectId
+                                  select pack).ToList();
+                    if (pa != null)
+                    {
+                        foreach(Package p in pa)
+                        {
+                            sum = p.PackagePrice;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+                    return sum;
+        }
     }
 }
