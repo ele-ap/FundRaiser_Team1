@@ -115,8 +115,21 @@ namespace FundRaiser_Team1_MVC.Controllers
         }
         public IActionResult FundingPage()
         {
+            var list = new List<FundingPage>();
+
             var project = _projectService.GetAllProjects();
-            return View(project);
+            foreach(var p in project)
+            {
+                var fundersCount = _projectService.GetFunders(p.Id);
+                var money = _projectService.GetMoney(p.Id);
+                list.Add(new FundingPage() { 
+                    project = p,
+                    FundersCount = fundersCount,
+                    Money = money
+                });
+            }
+
+            return View(list);
         }
 
         // POST: ProjectController/Create
