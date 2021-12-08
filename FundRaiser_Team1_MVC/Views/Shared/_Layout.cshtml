@@ -33,10 +33,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Project" asp-action="Index">Projects</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="NewProjectBtn" asp-area="" asp-controller="Project" asp-action="CreateProject">New Project</a>
+                         </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-dark"  id="FundingIdBtn" asp-area="" asp-controller="Project" asp-action="Funding">Funding Project</a>
+                        </li>
                     </ul>
                 </div>
-                <a class="btn btn-primary float-right" asp-area="" asp-controller="Project" asp-action="CreateProject">New Project</a>
-                 <a class="btn btn-primary float-right" asp-area="" asp-controller="Project" asp-action="Funding">Funding Project</a>
             </div>
         </nav>
     </header>
@@ -64,14 +68,36 @@
         let SignInBtn = document.getElementById("SignInBtn")
         let CreateUserBtn = document.getElementById("CreateUserBtn")
         let LogOutBtn = document.getElementById("LogOutBtn")
+        let FundingIdBtn = document.getElementById("FundingIdBtn")
+        let NewProjectBtn = document.getElementById("NewProjectBtn")
+
         let checkUserId = (cookieValue) =>{
         if (cookieValue != ""){
         SignInBtn.classList.add("d-none")
         CreateUserBtn.classList.add("d-none")
         }
-        else LogOutBtn.classList.add("d-none")
+        else 
+        {
+            LogOutBtn.classList.add("d-none")
+            FundingIdBtn.classList.add("d-none")
+            NewProjectBtn.classList.add("d-none")
+        }
         }
         checkUserId(cookieValue);
+
+        let cookieCategory = getCook('userCategory');
+
+        
+
+        let checkCategory = (cookieCategory) =>{
+        if (cookieCategory === "CREATOR" ){
+        FundingIdBtn.classList.add("d-none")
+        }
+        if (cookieCategory === "BACKER" ){
+        NewProjectBtn.classList.add("d-none")
+        }
+        }
+       checkCategory(cookieCategory);
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
