@@ -2,7 +2,7 @@
 
 namespace FundRaiser_Team1.Migrations
 {
-    public partial class jdhd : Migration
+    public partial class la : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
