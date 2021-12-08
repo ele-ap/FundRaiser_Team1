@@ -10,14 +10,12 @@ namespace FundRaiser_Team1.Models
         public DbSet<ProjectUser> ProjectUser { get; set; }
         public DbSet<PackageUser> PackageUser { get; set; }
 
-        public FundRaiserDbContext(DbContextOptions<FundRaiserDbContext> options) : base()
+       /* public FundRaiserDbContext(DbContextOptions<FundRaiserDbContext> options) : base()
         {
 
-        }
+        }*/
 
-        public FundRaiserDbContext()
-        {
-        }
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
