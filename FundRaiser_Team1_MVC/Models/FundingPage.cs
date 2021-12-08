@@ -6,6 +6,6 @@ namespace FundRaiser_Team1_Mvc.Models
     {
         public Project project { get; set; }
         public int FundersCount { get; set; }
-        public float Money { get; set; }
+        public decimal Money { get; set; }
     }
 }
