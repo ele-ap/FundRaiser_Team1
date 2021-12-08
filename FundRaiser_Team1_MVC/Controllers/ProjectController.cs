@@ -113,6 +113,11 @@ namespace FundRaiser_Team1_MVC.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        public IActionResult FundingPage()
+        {
+            var project = _projectService.GetAllProjects();
+            return View(project);
+        }
 
         // POST: ProjectController/Create
         [HttpPost]
@@ -198,5 +203,7 @@ namespace FundRaiser_Team1_MVC.Controllers
                       + Path.GetExtension(fileName);
         }
     }
+
+
 
 }

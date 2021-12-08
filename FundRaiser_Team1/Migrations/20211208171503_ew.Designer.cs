@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FundRaiser_Team1.Migrations
 {
     [DbContext(typeof(FundRaiserDbContext))]
-    [Migration("20211208153107_ndnandj")]
-    partial class ndnandj
+    [Migration("20211208171503_ew")]
+    partial class ew
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

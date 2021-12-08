@@ -4,6 +4,8 @@
 @{
     ViewData["Title"] = "Funding Page";
 }
+@model List<FundRaiser_Team1.Models.Project>
+@using FundRaiser_Team1.Services
 
 <h1>Funding Dashboard</h1>
 <div class="mb-4"></div>
@@ -18,29 +20,17 @@
     </tr>
   </thead>
   <tbody>
+   @foreach (var project in Model)
+{
     <tr>
       <th scope="row">1</th>
-      <td>Project 1</td>
-      <td>1500</td>
+      <td>@project.Title</td>
+                @{
+                    var NumberOfFunders = ProjectService.GetFunders(project.Id);
+                }
+                <td>@NumberOfFunders</td>
       <td>3524</td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Project 2</td>
-      <td>2042</td>
-      <td>4204</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Project 3</td>
-      <td>520</td>
-      <td>2240</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Project 3</td>
-      <td>520</td>
-      <td>2240</td>
-    </tr>
+}
   </tbody>
 </table>
