@@ -141,11 +141,8 @@ namespace FundRaiser_Team1.Services
         public decimal GetMoney(int projectId)
         {
             decimal sum = 0;
-            try
-            {
-                using (FundRaiserDbContext db = new FundRaiserDbContext())
-                {
-                    List <Package> pa = (from pack in db.Package
+
+                    List <Package> pa = (from pack in _dbContext.Package
                                   where pack.ProjectId == projectId
                                   select pack).ToList();
                     if (pa != null)
@@ -155,13 +152,7 @@ namespace FundRaiser_Team1.Services
                             sum = p.PackagePrice;
                         }
                     }
-                }
-            }
-            catch
-            {
-
-            }
-                    return sum;
+            return sum;
         }
     }
 }
