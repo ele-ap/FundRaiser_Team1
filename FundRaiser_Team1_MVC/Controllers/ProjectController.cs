@@ -45,7 +45,7 @@ namespace FundRaiser_Team1_MVC.Controllers
         {
             return View();
         }
-        public ActionResult Funding()
+        public ActionResult Browse()
         {
             var project = _projectService.GetAllProjects();
             return View(project);
