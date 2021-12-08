@@ -1,24 +1,31 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = @Model.Title;
 }
 
 @model FundRaiser_Team1.Models.Project
 
-<h1> @Model.Title  </h1>
-<h6><i>"@Model.StatusPost"</i></h6>
-<br />
+<img class="img-fluid mb-4" src="~/images/@Model.Photo"/>
+<div class="d-flex flex-row justify-content-between align-items-center">
+    <div>
+        <p class="h1"> @Model.Title  </p>
+        <p class="text-light badge bg-primary">@Model.StatusPost</p>
+    </div>
+    <div>
+        <a href="/Project/DeleteProject/@Model.Id" class="btn btn-outline-danger">
+            Delete this project
+        </a>
+    </div>
+</div>
 
+<div class="border border-2 rounded bg-light p-2 mb-4">
+    <p> @Model.Description </p>
+</div>
 
-<p> @Model.Description </p>
-<a href="/Project/DeleteProject/@Model.Id" style="color:red;">Delete this project</a>
-
-<h3>Project Backers</h3>
+<h5>Project Backers</h5>
 
 @foreach(var users in Model.Users)
 {
-    <ul>
+    <ul class="list-unstyled">
         <li>@users.FirstName @users.LastName</li>
     </ul>            
 }

@@ -152,11 +152,17 @@ namespace FundRaiser_Team1.Migrations
 
             modelBuilder.Entity("PackageProject", b =>
                 {
-                    b.HasOne("FundRaiser_Team1.Models.Project", null)
-                        .WithMany("AwardPackages")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("AwardPackagesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProjectsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AwardPackagesId", "ProjectsId");
+
+                    b.HasIndex("ProjectsId");
+
+                    b.ToTable("PackageProject");
                 });
 
             modelBuilder.Entity("FundRaiser_Team1.Models.PackageUser", b =>
