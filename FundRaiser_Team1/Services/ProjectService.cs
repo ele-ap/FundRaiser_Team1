@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FundRaiser_Team1.Services
 {
-    public class ProjectService : IProjectService , IProjectUserService
+    public class ProjectService : IProjectService 
     {
         private readonly FundRaiserDbContext _dbContext;
 
@@ -104,6 +104,22 @@ namespace FundRaiser_Team1.Services
             _dbContext.ProjectUser.Remove(projectDb);
 
             return _dbContext.SaveChanges() == 1;
+        }
+
+        public List<Package> GetAllPackages(int projectId)
+        {
+            List<Package> packages = (from package in _dbContext.Package
+                                   where package.ProjectId == projectId
+                                   select package).ToList();
+
+            return packages;
+        }
+
+        public void CreatePackageUser(PackageUser packageUser)
+        {
+            _dbContext.PackageUser.Add(packageUser);
+            try { _dbContext.SaveChanges(); }
+            catch { }
         }
     }
 }

@@ -13,5 +13,7 @@ namespace FundRaiser_Team1.Models
 		public string PackageName { get; set; }
 		public string Description { get; set; }
 		public decimal PackagePrice { get; set; }
+		public int ProjectId { get; set; }
+		public List<User> Users { get; set; }
 	}
 }

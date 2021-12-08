@@ -2,7 +2,7 @@
 
 namespace FundRaiser_Team1.Migrations
 {
-    public partial class @try : Migration
+    public partial class la : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,7 +48,7 @@ namespace FundRaiser_Team1.Migrations
                     PackageName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PackagePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ProjectId = table.Column<int>(type: "int", nullable: true)
+                    ProjectId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -58,7 +58,7 @@ namespace FundRaiser_Team1.Migrations
                         column: x => x.ProjectId,
                         principalTable: "Projects",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -88,10 +88,46 @@ namespace FundRaiser_Team1.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "PackageUser",
+                columns: table => new
+                {
+                    PackageUserId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    PackageId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PackageUser", x => x.PackageUserId);
+                    table.ForeignKey(
+                        name: "FK_PackageUser_Package_PackageId",
+                        column: x => x.PackageId,
+                        principalTable: "Package",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PackageUser_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Package_ProjectId",
                 table: "Package",
                 column: "ProjectId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PackageUser_PackageId",
+                table: "PackageUser",
+                column: "PackageId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PackageUser_UserId",
+                table: "PackageUser",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProjectUser_ProjectId",
@@ -113,16 +149,19 @@ namespace FundRaiser_Team1.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Package");
+                name: "PackageUser");
 
             migrationBuilder.DropTable(
                 name: "ProjectUser");
 
             migrationBuilder.DropTable(
-                name: "Projects");
+                name: "Package");
 
             migrationBuilder.DropTable(
                 name: "User");
+
+            migrationBuilder.DropTable(
+                name: "Projects");
         }
     }
 }

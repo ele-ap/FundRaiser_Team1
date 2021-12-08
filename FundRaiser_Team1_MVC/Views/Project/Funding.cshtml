@@ -1,17 +1,26 @@
 ﻿@model List<FundRaiser_Team1.Models.Project>
 
-<h1> Projects </h1>
+<h1> Choose Project to fund </h1>
 <br />
 @foreach (var project in Model)
 {
     <div class="card" style="width: 18rem; display:inline-block;">
+    <form asp-action="GoFunding">
+   
         <img class="card-img-top" src="~/images/@project.Photo" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">@project.Title</h5>
             <p class="card-text">@project.Description</p>
-            <a href="/Project/GetProject/@project.Id" class="btn btn-primary">View</a>
-            <a href="/Package/CreatePackage/@project.Id" class="btn btn-primary">Create Your Package</a>
+            
+            <div class="form-group">
+                <label for="projectId"></label>
+                <input type="hidden" value="@project.Id" name="projectId">
+            </div>
+           
         </div>
-    </div>
+    <button type="submit" class="btn btn-primary" style="width:100%"> Fund </button>
+    </form>
+     
+     </div>
 }
 

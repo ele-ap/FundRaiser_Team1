@@ -45,6 +45,50 @@ namespace FundRaiser_Team1_MVC.Controllers
         {
             return View();
         }
+        public ActionResult Funding()
+        {
+            var project = _projectService.GetAllProjects();
+            return View(project);
+           
+        }
+        public ActionResult GoFunding()
+        {
+            return View();
+
+        }
+        [HttpPost]
+        public ActionResult Buy(int packageId)
+        {
+            int UserId = int.Parse(Request.Cookies["userId"]);
+            try
+            {
+                using (FundRaiserDbContext db = new FundRaiserDbContext())
+                {
+                    Package pa = (from pack in db.Package
+                                      where pack.Id == packageId
+                                      select pack).SingleOrDefault();
+                    if (pa != null)
+                    {
+                        ProjectUser projectUser = new ProjectUser(UserId, pa.ProjectId, Category.BACKER);
+                        _projectService.CreateProjectUser(projectUser);
+                        PackageUser packageUser = new PackageUser(UserId, packageId);
+                        _projectService.CreatePackageUser(packageUser);
+                    }
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult GoFunding(int projectId)
+        {
+            var package = _projectService.GetAllPackages(projectId);
+            return View(package);
+        }
 
         [HttpPost]
         public ActionResult CreateProject(ProjectWithImage projectWithImage)
