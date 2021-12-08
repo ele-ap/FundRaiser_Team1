@@ -149,7 +149,7 @@ namespace FundRaiser_Team1.Services
                     {
                         foreach(Package p in pa)
                         {
-                            sum = p.PackagePrice;
+                            sum += p.PackagePrice;
                         }
                     }
             return sum;
