@@ -74,9 +74,26 @@
         <div class="card-body text-center">
             <h4 class="card-title">@project.Title</h4>
             <p>@project.Description</p><a href="/Project/GetProject/@project.Id" class="btn custom-btn text-light">View Project</a>
-            <a href="/Package/CreatePackage/@project.Id" class="btn custom-btn text-light">Create Your Package</a>
+            <a href="/Package/CreatePackage/@project.Id" class="btn custom-btn text-light" id="createPackage">Create Your Package</a>
         </div>
     </div>      
    </div>
 }
 </div>
+<script>
+    let createPackage = document.getElementById('createPackage');
+
+    function getCookies(cookiename) {
+        let cookiestring=RegExp(cookiename+"=[^;]+").exec(document.cookie);
+        return decodeURIComponent(!!cookiestring ? cookiestring.toString().replace(/^[^=]+./,"") : "");
+    }
+
+    let cookieCat = getCookies('userCategory');
+
+    let checkUserCategory = (cookieCat) => {
+        if (cookieCat === "BACKER" || cookieCat === '' ) {
+            createPackage.classList.add('d-none');
+        }
+    }
+    checkUserCategory(cookieCat);
+</script>
