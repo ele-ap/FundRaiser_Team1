@@ -7,42 +7,111 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body>
+
+<style>
+    .new-proj {
+        background: #B000B5;
+        border: none;
+        padding: 5px 15px;
+        border-radius: 5px;
+        opacity: 0.6;
+        transition: 0.3s;
+    }
+
+    .new-proj:hover {
+        background-color: #B000B5;
+        opacity: 0.7;
+    }
+
+    .form-control {
+        background-color: #626970!important;
+        color: white!important;
+        border: none!important;
+        padding: 0px 10px;
+    }
+
+    .form-control::placeholder {
+        color: white!important;
+        opacity: 0.7!important;
+    }
+    
+    .form-control::selection {
+        color: #B99E62!important;
+    }
+
+    a {
+        color: #B99E62;
+    }
+
+    a:hover {
+        color: #B99E62;
+        opacity: 0.7!important;
+        text-decoration: none;
+    }
+
+    
+    *::selection {
+        background: #fefefe!important;
+        color: #B99E62!important;
+    }
+
+    button {
+        background-color: #B99E62!important;
+        opacity: 0.8!important;
+        border: none!important;
+    }
+
+    button:hover {
+        background-color: #B99E62!important;
+        opacity: 1!important;
+    }
+
+    *:focus {
+        outline: 5px #B99E62!important;
+    }
+
+</style>
+
+<body class="bg-dark text-white">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-dark bg-dark navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FunderRaiser_Team1</a>
+                <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index">FunderRaiser_Team1</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" id="SignInBtn" asp-area="" asp-controller="Home" asp-action="SignIn">Sign In</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" id="LogOutBtn" asp-area="" asp-controller="Home" asp-action="LogOut">Log Out</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" id="CreateUserBtn" asp-area="" asp-controller="User" asp-action="CreateUser">Create Your User</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Project" asp-action="Index">Projects</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" id="NewProjectBtn" asp-area="" asp-controller="Project" asp-action="CreateProject">New Project</a>
-                         </li>
-                        <li class="nav-item">
-                        <a class="nav-link text-dark"  id="BrowseIdBtn" asp-area="" asp-controller="Project" asp-action="Browse">Browse</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link text-dark"  id="FundingIdBtn" asp-area="" asp-controller="Project" asp-action="FundingPage">Funding</a>
-                        </li>
-                    </ul>
+                    <div class="d-flex flex-row">
+                    <ul class="navbar-nav flex-grow-1 d-flex justify-content-between flex-row">
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" id="SignInBtn" asp-area="" asp-controller="Home" asp-action="SignIn">Sign In</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" id="LogOutBtn" asp-area="" asp-controller="Home" asp-action="LogOut">Log Out</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" id="CreateUserBtn" asp-area="" asp-controller="User" asp-action="CreateUser">Create Your User</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Project" asp-action="Index">Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light"  id="BrowseIdBtn" asp-area="" asp-controller="Project" asp-action="Browse">Browse</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light"  id="FundingIdBtn" asp-area="" asp-controller="Project" asp-action="FundingPage">Funding</a>
+                            </li>
+                     </ul>
+                        </div>
+                        <div>
+                            <button class="new-proj text-light" id="NewProjectBtn">
+                                <a class="text-light" asp-area="" asp-controller="Project" asp-action="CreateProject">New Project</a>
+                            </button>
+                        </div>
                 </div>
             </div>
         </nav>
@@ -62,45 +131,45 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
-        function getCook(cookiename)
-        {
-        let cookiestring=RegExp(cookiename+"=[^;]+").exec(document.cookie);
-        return decodeURIComponent(!!cookiestring ? cookiestring.toString().replace(/^[^=]+./,"") : "");
-        }
-        let cookieValue = getCook('userId');
+
         let SignInBtn = document.getElementById("SignInBtn")
         let CreateUserBtn = document.getElementById("CreateUserBtn")
         let LogOutBtn = document.getElementById("LogOutBtn")
         let BrowseIdBtn = document.getElementById("BrowseIdBtn")
         let NewProjectBtn = document.getElementById("NewProjectBtn")
 
-        let checkUserId = (cookieValue) =>{
-        if (cookieValue != ""){
-        SignInBtn.classList.add("d-none")
-        CreateUserBtn.classList.add("d-none")
+        function getCook(cookiename) {
+            let cookiestring=RegExp(cookiename+"=[^;]+").exec(document.cookie);
+            return decodeURIComponent(!!cookiestring ? cookiestring.toString().replace(/^[^=]+./,"") : "");
         }
-        else 
-        {
-            LogOutBtn.classList.add("d-none")
-            BrowseIdBtn.classList.add("d-none")
-            NewProjectBtn.classList.add("d-none")
-        }
+
+        let cookieValue = getCook('userId');
+        
+        let checkUserId = (cookieValue) => {
+            if (cookieValue != "") {
+                SignInBtn.classList.add("d-none")
+                CreateUserBtn.classList.add("d-none")
+            }
+            else {
+                LogOutBtn.classList.add("d-none")
+                BrowseIdBtn.classList.add("d-none")
+                NewProjectBtn.classList.add("d-none")
+            }
         }
         checkUserId(cookieValue);
 
         let cookieCategory = getCook('userCategory');
 
-        
-
-        let checkCategory = (cookieCategory) =>{
-        if (cookieCategory === "CREATOR" ){
-        FundingIdBtn.classList.add("d-none")
-        }
-        if (cookieCategory === "BACKER" ){
-        NewProjectBtn.classList.add("d-none")
-        }
+        let checkCategory = (cookieCategory) => {
+            if (cookieCategory === "CREATOR" ) {
+            FundingIdBtn.classList.add("d-none")
+            }
+            if (cookieCategory === "BACKER" ) {
+            NewProjectBtn.classList.add("d-none")
+            }
         }
        checkCategory(cookieCategory);
+
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

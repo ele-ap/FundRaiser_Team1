@@ -10,7 +10,7 @@
         <p class="h1"> @Model.Title  </p>
         <p class="text-light badge bg-primary">@Model.StatusPost</p>
     </div>
-    <div>
+    <div id="deleteBtn">
         <a href="/Project/DeleteProject/@Model.Id" class="btn btn-outline-danger">
             Delete this project
         </a>
@@ -29,3 +29,23 @@
         <li>@users.FirstName @users.LastName</li>
     </ul>            
 }
+
+    <script>
+        
+        let deleteBtn = document.getElementById('deleteBtn')
+       
+        function getCookie(cookiename) {
+            let cookiestring=RegExp(cookiename+"=[^;]+").exec(document.cookie);
+            return decodeURIComponent(!!cookiestring ? cookiestring.toString().replace(/^[^=]+./,"") : "");
+        }
+
+        let typeOfCookie = getCookie('userCategory');
+
+        let checkIfBacker = (typeOfCookie) => {
+            if (typeOfCookie === "BACKER" ){
+                deleteBtn.classList.add('d-none');
+            }
+        }
+
+        checkIfBacker(typeOfCookie);
+    </script>

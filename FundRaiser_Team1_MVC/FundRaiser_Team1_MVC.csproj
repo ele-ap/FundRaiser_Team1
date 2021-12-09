@@ -20,6 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\imgs\DJI_0367.jpg" />
+    <None Include="wwwroot\imgs\DJI_0377.JPG" />
+    <None Include="wwwroot\imgs\DJI_0678_IG.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\FundRaiser_Team1\FundRaiser_Team1.csproj" />
   </ItemGroup>
 
