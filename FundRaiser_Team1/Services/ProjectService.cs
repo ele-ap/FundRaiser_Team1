@@ -142,15 +142,26 @@ namespace FundRaiser_Team1.Services
         {
             decimal sum = 0;
 
-            List <Package> pa = (from pack in _dbContext.Package
+            List <PackageUser> pa = (from pack in _dbContext.PackageUser
                           where pack.ProjectId == projectId
                           select pack).ToList();
 
+
+
+
             if (pa != null)
             {
-                foreach(Package p in pa)
+                List<int> pi = new List<int>();
+                foreach (PackageUser p in pa)
                 {
-                    sum += p.PackagePrice;
+                    pi.Add(p.PackageId);
+                }
+                foreach(var id in pi)
+                {
+                    Package myPackage = (from pck in _dbContext.Package
+                                         where pck.Id == id
+                                         select pck).SingleOrDefault();
+                    sum = sum + myPackage.PackagePrice;
                 }
             }
 

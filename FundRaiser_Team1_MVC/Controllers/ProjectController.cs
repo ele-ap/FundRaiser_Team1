@@ -71,7 +71,7 @@ namespace FundRaiser_Team1_MVC.Controllers
                     {
                         ProjectUser projectUser = new ProjectUser(UserId, pa.ProjectId, Category.BACKER);
                         _projectService.CreateProjectUser(projectUser);
-                        PackageUser packageUser = new PackageUser(UserId, packageId);
+                        PackageUser packageUser = new PackageUser(UserId, packageId , pa.ProjectId);
                         _projectService.CreatePackageUser(packageUser);
                     }
                 }
