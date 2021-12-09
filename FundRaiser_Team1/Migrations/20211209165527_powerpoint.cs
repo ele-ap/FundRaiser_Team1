@@ -2,7 +2,7 @@
 
 namespace FundRaiser_Team1.Migrations
 {
-    public partial class @try : Migration
+    public partial class powerpoint : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

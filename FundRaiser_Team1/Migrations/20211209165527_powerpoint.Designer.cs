@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FundRaiser_Team1.Migrations
 {
     [DbContext(typeof(FundRaiserDbContext))]
-    [Migration("20211209132338_try")]
-    partial class @try
+    [Migration("20211209165527_powerpoint")]
+    partial class powerpoint
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
