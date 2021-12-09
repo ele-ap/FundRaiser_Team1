@@ -9,8 +9,8 @@
 </head>
 
 <style>
-    .new-proj {
-        background: #B000B5;
+    .custom-btn {
+        background:#B99E62;
         border: none;
         padding: 5px 15px;
         border-radius: 5px;
@@ -18,8 +18,8 @@
         transition: 0.3s;
     }
 
-    .new-proj:hover {
-        background-color: #B000B5;
+    .custom-btn:hover {
+        background-color: #B99E62;
         opacity: 0.7;
     }
 
@@ -70,6 +70,10 @@
         outline: 5px #B99E62!important;
     }
 
+    .card {
+        background-color: #626970!important;
+    }
+
 </style>
 
 <body class="bg-dark text-white">
@@ -108,7 +112,7 @@
                      </ul>
                         </div>
                         <div>
-                            <button class="new-proj text-light" id="NewProjectBtn">
+                            <button class="custom-btn text-light" id="NewProjectBtn">
                                 <a class="text-light" asp-area="" asp-controller="Project" asp-action="CreateProject">New Project</a>
                             </button>
                         </div>
@@ -132,11 +136,12 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
 
-        let SignInBtn = document.getElementById("SignInBtn")
-        let CreateUserBtn = document.getElementById("CreateUserBtn")
-        let LogOutBtn = document.getElementById("LogOutBtn")
-        let BrowseIdBtn = document.getElementById("BrowseIdBtn")
-        let NewProjectBtn = document.getElementById("NewProjectBtn")
+        let SignInBtn = document.getElementById("SignInBtn");
+        let CreateUserBtn = document.getElementById("CreateUserBtn");
+        let LogOutBtn = document.getElementById("LogOutBtn");
+        let BrowseIdBtn = document.getElementById("BrowseIdBtn");
+        let NewProjectBtn = document.getElementById("NewProjectBtn");
+        let FundingIdBtn = document.getElementById("FundingIdBtn");
 
         function getCook(cookiename) {
             let cookiestring=RegExp(cookiename+"=[^;]+").exec(document.cookie);
@@ -147,13 +152,14 @@
         
         let checkUserId = (cookieValue) => {
             if (cookieValue != "") {
-                SignInBtn.classList.add("d-none")
-                CreateUserBtn.classList.add("d-none")
+                SignInBtn.classList.add("d-none");
+                CreateUserBtn.classList.add("d-none");
             }
             else {
-                LogOutBtn.classList.add("d-none")
-                BrowseIdBtn.classList.add("d-none")
-                NewProjectBtn.classList.add("d-none")
+                LogOutBtn.classList.add("d-none");
+                BrowseIdBtn.classList.add("d-none");
+                NewProjectBtn.classList.add("d-none");
+                FundingIdBtn.classList.add("d-none");
             }
         }
         checkUserId(cookieValue);
@@ -162,10 +168,10 @@
 
         let checkCategory = (cookieCategory) => {
             if (cookieCategory === "CREATOR" ) {
-            FundingIdBtn.classList.add("d-none")
+            FundingIdBtn.classList.add("d-none");
             }
             if (cookieCategory === "BACKER" ) {
-            NewProjectBtn.classList.add("d-none")
+            NewProjectBtn.classList.add("d-none");
             }
         }
        checkCategory(cookieCategory);
